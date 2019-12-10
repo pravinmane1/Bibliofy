@@ -27,6 +27,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.twenty80partnership.bibliofy.modules.Order;
 import com.twenty80partnership.bibliofy.modules.OrderRequest;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -125,11 +129,18 @@ public class PayActivity extends AppCompatActivity {
 
         pd.show();
 
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+
+        Date currentDate = Calendar.getInstance().getTime();
+
+        String date = dateFormat.format(currentDate);
+
         DatabaseReference orderRequestRef = FirebaseDatabase.getInstance().getReference("OrderReq").child(mAuth.getCurrentUser().getUid());
 
         final OrderRequest order = new OrderRequest();
         order.setAddressId(addressId);
         order.setMethod(method);
+        order.setUserTimeAdded(Long.valueOf(date));
 
         final String tempOrderId = orderRequestRef.push().getKey();
 

@@ -71,9 +71,9 @@ public class MyOrdersActivity extends AppCompatActivity {
             @Override
             protected void populateViewHolder(final OrderViewHolder viewHolder, final Order model, final int position) {
 
-                String key = getRef(position).getKey();
+               //String key = getRef(position).getKey();
 
-                viewHolder.setDetails(key,model.getPriceDetails().getCount(),model.getStatus(),getApplicationContext());
+                viewHolder.setDetails(model.getOrderId(),model.getDaysForDelivery(),model.getUserTimeAdded(),model.getPriceDetails().getCount(),model.getStatus(),getApplicationContext());
 
                 //remove button listener
                 viewHolder.orderCard.setOnClickListener(new View.OnClickListener() {

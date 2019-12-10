@@ -8,8 +8,10 @@ public class Order  implements Serializable {
     PriceDetails priceDetails;
     String status;
     Long timeAdded;
+    Long userTimeAdded;
     String tOid;
     Boolean userViewed;
+    Integer daysForDelivery;
 
 
     public Order(String orderId, Address address, PriceDetails priceDetails, String status, Long timeAdded, String tOid, Boolean userViewed) {
@@ -20,6 +22,22 @@ public class Order  implements Serializable {
         this.timeAdded = timeAdded;
         this.tOid = tOid;
         this.userViewed = userViewed;
+    }
+
+    public Integer getDaysForDelivery() {
+        return daysForDelivery;
+    }
+
+    public void setDaysForDelivery(Integer daysForDelivery) {
+        this.daysForDelivery = daysForDelivery;
+    }
+
+    public Long getUserTimeAdded() {
+        return userTimeAdded;
+    }
+
+    public void setUserTimeAdded(Long userTimeAdded) {
+        this.userTimeAdded = userTimeAdded;
     }
 
     public Boolean getUserViewed() {
