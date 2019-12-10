@@ -109,151 +109,34 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
         Cursor cursor1 =  databaseHelper.getAllData1();
 
-        StringBuffer stringBuffer = new StringBuffer();
-        while (cursor1.moveToNext()){
-            stringBuffer.append(" id "+cursor1.getString(0)+"\n");
-            stringBuffer.append(" name "+cursor1.getString(2)+"\n");
-            stringBuffer.append(" priority "+cursor1.getString(3)+"\n");
-        }
+//        StringBuffer stringBuffer = new StringBuffer();
+//        while (cursor1.moveToNext()){
+//            stringBuffer.append(" id "+cursor1.getString(0)+"\n");
+//            stringBuffer.append(" name "+cursor1.getString(2)+"\n");
+//            stringBuffer.append(" priority "+cursor1.getString(3)+"\n");
+//        }
+//
+//        TextView textView = findViewById(R.id.info);
+//        textView.setText(stringBuffer.toString());
 
-        TextView textView = findViewById(R.id.info);
-        textView.setText(stringBuffer.toString());
-
-        downloadImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                databaseHelper.deleteData2(1);
-            }
-        });
+//        downloadImg.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                databaseHelper.deleteData2(1);
+//            }
+//        });
 
         Cursor cursor = databaseHelper.getData2(1);
-        DatabaseReference bannerUpdateRef = FirebaseDatabase.getInstance().getReference("BannerUpdate").child("SPPU");
+
+        sliderLayout = findViewById(R.id.imageSlider);
+        bannerList=new ArrayList<>();
 
         if (cursor.getCount()==0){
-
-            bannerUpdateRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    final int version = dataSnapshot.child("version").getValue(Integer.class);
-
-                    DatabaseReference bannerRef = FirebaseDatabase.getInstance().getReference("Banners").child("SPPU");
-
-                    bannerRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                            for (DataSnapshot BannerData:dataSnapshot.getChildren()){
-
-                                Log.d("dashboarddb","eventlistener called");
-
-                                Banner banner=BannerData.getValue(Banner.class);
-                                //downloadAndSave(,"insert");
-                                boolean success = databaseHelper.insertData1(banner.getId(),banner.getImg(),banner.getName(),(int)banner.getPriority());
-
-                                if (!success)
-                                    Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
-                                else {
-                                    //Toast.makeText(getApplicationContext(), "id " + banner.getId() + " is inserted.", Toast.LENGTH_SHORT).show();
-                                }
-
-                            }
-
-                            boolean success = databaseHelper.insertData2(1,"bannerUpdate",version);
-                            if(success){
-                                Toast.makeText(DashboardActivity.this,"bannerUpdate info added",Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                            Toast.makeText(DashboardActivity.this,"banner update ref "+databaseError.toException().toString(),Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-
-
-
-
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(DashboardActivity.this,databaseError.getMessage(),Toast.LENGTH_SHORT).show();
-
-                }
-            });
+            initializeBannerDatabase();
         }
         else {
-
-            bannerUpdateRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    final int version = dataSnapshot.child("version").getValue(Integer.class);
-
-                   Cursor cursor = databaseHelper.getData2(1);
-
-                   cursor.moveToFirst();
-                   if (Integer.valueOf(cursor.getString(2))!=version){
-
-                       DatabaseReference bannerRef = FirebaseDatabase.getInstance().getReference("Banners").child("SPPU");
-
-                       bannerRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                           @Override
-                           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                               for (DataSnapshot BannerData:dataSnapshot.getChildren()){
-
-                                   Log.d("dashboarddb","eventlistener called");
-
-                                   Banner banner=BannerData.getValue(Banner.class);
-                                   Cursor c = databaseHelper.getData1(banner.getId());
-
-                                   if(c.getCount()==0){
-                                       boolean success = databaseHelper.insertData1(banner.getId(),banner.getImg(),banner.getName(),(int)banner.getPriority());
-                                   }
-                                   else {
-                                       boolean success = databaseHelper.updateData1(banner.getId(),banner.getImg(),banner.getName(),(int)banner.getPriority());
-                                   }
-
-
-                               }
-
-
-                               boolean success = databaseHelper.insertData2(1,"bannerUpdate",version);
-                               if(!success){
-                                   Toast.makeText(DashboardActivity.this,"bannerUpdate info failed",Toast.LENGTH_SHORT).show();
-                               }
-                           }
-
-                           @Override
-                           public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                           }
-                       });
-
-
-
-                       Toast.makeText(DashboardActivity.this,"version mismatch",Toast.LENGTH_SHORT).show();
-
-                       boolean success = databaseHelper.updateData2(1,"bannerUpdate",version);
-                       if (success){
-                           Toast.makeText(DashboardActivity.this,"version updated",Toast.LENGTH_SHORT).show();
-                       }
-                       else {
-                           Toast.makeText(DashboardActivity.this,"version updation failed",Toast.LENGTH_SHORT).show();
-                       }
-
-
-                   }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(DashboardActivity.this,databaseError.getMessage(),Toast.LENGTH_SHORT).show();
-                }
-            });
-
+            setSliderViews();
+            checkVersionAndUpdateBannerTable();
         }
 
 
@@ -262,13 +145,12 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         pd.setCancelable(false);
         //pd.show();
 
-        sliderLayout = findViewById(R.id.imageSlider);
-        bannerList=new ArrayList<>();
-        setSliderViews();
+
+       // setSliderViews();
         Log.d("downloadimg","in oncreate");
 
-        String r = downloadAndSetImg("https://firebasestorage.googleapis.com/v0/b/trialmanual.appspot.com/o/index.jpeg?alt=media&token=73496335-faf7-4abb-b059-ae01e0f72ddc");
-        Toast.makeText(DashboardActivity.this,r,Toast.LENGTH_SHORT).show();
+       // String r = downloadAndSetImg("https://firebasestorage.googleapis.com/v0/b/trialmanual.appspot.com/o/index.jpeg?alt=media&token=73496335-faf7-4abb-b059-ae01e0f72ddc");
+        //Toast.makeText(DashboardActivity.this,r,Toast.LENGTH_SHORT).show();
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -424,6 +306,143 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DashboardActivity.this,ProjectsActivity.class));
+            }
+        });
+    }
+
+    private void checkVersionAndUpdateBannerTable() {
+        DatabaseReference bannerUpdateRef = FirebaseDatabase.getInstance().getReference("BannerUpdate").child("SPPU");
+
+        bannerUpdateRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                final int version = dataSnapshot.child("version").getValue(Integer.class);
+
+                Cursor cursor = databaseHelper.getData2(1);
+
+                cursor.moveToFirst();
+                if (Integer.valueOf(cursor.getString(2))!=version){
+
+                    DatabaseReference bannerRef = FirebaseDatabase.getInstance().getReference("Banners").child("SPPU");
+
+                    bannerRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                            for (DataSnapshot BannerData:dataSnapshot.getChildren()){
+
+                                Log.d("dashboarddb","eventlistener called");
+
+                                Banner banner=BannerData.getValue(Banner.class);
+                                Cursor c = databaseHelper.getData1(banner.getId());
+
+                                if(c.getCount()==0){
+                                    boolean success = databaseHelper.insertData1(banner.getId(),banner.getImg(),banner.getName(),(int)banner.getPriority());
+                                }
+                                else {
+                                    boolean success = databaseHelper.updateData1(banner.getId(),banner.getImg(),banner.getName(),(int)banner.getPriority());
+                                }
+
+
+                            }
+
+
+
+                            boolean success = databaseHelper.updateData2(1,"bannerUpdate",version);
+                            if(!success){
+                                Toast.makeText(DashboardActivity.this,"bannerUpdate info failed",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+
+                    Toast.makeText(DashboardActivity.this,"version mismatch",Toast.LENGTH_SHORT).show();
+
+                    boolean success = databaseHelper.updateData2(1,"bannerUpdate",version);
+                    if (success){
+                        Toast.makeText(DashboardActivity.this,"version updated",Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(DashboardActivity.this,"version updation failed",Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+                //no need to update version show old bannerdata
+                else{
+                   // setSliderViews();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(DashboardActivity.this,databaseError.getMessage(),Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void initializeBannerDatabase() {
+
+        DatabaseReference bannerUpdateRef = FirebaseDatabase.getInstance().getReference("BannerUpdate").child("SPPU");
+
+        bannerUpdateRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                final int version = dataSnapshot.child("version").getValue(Integer.class);
+
+                DatabaseReference bannerRef = FirebaseDatabase.getInstance().getReference("Banners").child("SPPU");
+
+                bannerRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        for (DataSnapshot BannerData:dataSnapshot.getChildren()){
+
+                            Log.d("dashboarddb","eventlistener called");
+
+                            Banner banner=BannerData.getValue(Banner.class);
+                            //downloadAndSave(,"insert");
+                            boolean success = databaseHelper.insertData1(banner.getId(),banner.getImg(),banner.getName(),(int)banner.getPriority());
+
+                            if (!success)
+                                Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
+//                                else {
+//                                    //Toast.makeText(getApplicationContext(), "id " + banner.getId() + " is inserted.", Toast.LENGTH_SHORT).show();
+//                                }
+
+                        }
+
+                        setSliderViews();
+
+                        boolean success = databaseHelper.insertData2(1,"bannerUpdate",version);
+                        if(success){
+                            Toast.makeText(DashboardActivity.this,"bannerUpdate info added",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(DashboardActivity.this,"banner update ref "+databaseError.toException().toString(),Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(DashboardActivity.this,databaseError.getMessage(),Toast.LENGTH_SHORT).show();
+
             }
         });
     }
