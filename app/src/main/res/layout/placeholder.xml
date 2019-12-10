@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="10dp"
+    android:layout_margin="5dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:orientation="vertical"
+        android:layout_margin="4dp"
+        android:weightSum="9"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.9"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <LinearLayout
+               android:gravity="left|center_vertical"
+                android:layout_weight="7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <View
+                    android:layout_width="170dp"
+                    android:layout_height="10dp"
+                    android:id="@+id/book_name"
+                    android:layout_marginLeft="4dp"
+                    android:background="@color/placeholder_bg" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:layout_height="match_parent">
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="8dp"
+
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:id="@+id/book_availability"
+                android:background="@color/placeholder_bg"
+                />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:id="@+id/SplitLine_hor1"
+            android:layout_width="match_parent"
+            android:layout_height= "1.5dp"
+            android:background="@color/lightwhite" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            android:weightSum="10"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_margin="4dp"
+                android:layout_height="match_parent">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content">
+                    <com.elyeproj.loaderviewlibrary.LoaderImageView
+                        android:id="@+id/book_img"
+                        android:layout_width="60dp"
+                        android:layout_height="75dp"
+                        android:background="@color/placeholder_bg"/>
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:id="@+id/book_publication"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="110dp"
+                    android:layout_height="8dp"
+                   android:background="@color/placeholder_bg"
+                   />
+
+
+                <View
+                    android:id="@+id/book_author"
+                    android:layout_width="140dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/placeholder_bg"
+                    android:layout_marginTop="14dp"
+                    android:layout_height="8dp"
+                    />
+
+
+
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center"-->
+                   <!--android:layout_marginTop="12dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:orientation="horizontal">-->
+
+
+
+
+                    <!--<View-->
+                        <!--android:id="@+id/book_discounted_price"-->
+                        <!--android:layout_marginLeft="15dp"-->
+                        <!--android:layout_marginRight="5dp"-->
+                        <!--android:layout_width="50dp"-->
+                        <!--android:layout_height="10dp"-->
+                        <!--android:background="@color/placeholder_bg"-->
+                      <!--/>-->
+
+
+                    <!--<View-->
+                        <!--android:id="@+id/book_original_price"-->
+                        <!--android:layout_width="50dp"-->
+                        <!--android:background="@color/placeholder_bg"-->
+                        <!--android:layout_marginRight="5dp"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:layout_height="10dp"-->
+                         <!--/>-->
+
+
+
+                    <!--<View-->
+                        <!--android:id="@+id/book_discount"-->
+                        <!--android:layout_marginRight="5dp"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:layout_width="50dp"-->
+                        <!--android:layout_height="10dp"-->
+                        <!--android:background="@color/placeholder_bg"-->
+                        <!--/>-->
+                <!--</LinearLayout>-->
+
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="14dp"
+                android:orientation="horizontal">
+
+                <View
+                android:id="@+id/book_discounted_price"
+                android:layout_width="100dp"
+                android:layout_height="8dp"
+                android:background="@color/placeholder_bg"
+                />
+
+                </LinearLayout>
+                <View
+                    android:layout_marginEnd="4dp"
+                    android:id="@+id/SplitLine_hor"
+                    android:layout_width="match_parent"
+                    android:layout_height= "1.5dp"
+                    android:background="@color/lightwhite" />
+                    <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="6">
+
+
+                        <View
+                            android:layout_width="60dp"
+                            android:layout_height="20dp"
+                            android:background="@color/placeholder_bg"
+                            android:id="@+id/add"
+                            />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

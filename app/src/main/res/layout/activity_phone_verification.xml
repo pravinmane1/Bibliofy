@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PhoneVerificationActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:minHeight="?attr/actionBarSize"
+        app:title=" " />
+
+    <me.philio.pinentry.PinEntryView
+        android:layout_below="@id/toolbar"
+        android:layout_centerHorizontal="true"
+        app:numDigits="6"
+        app:digitHeight="35dp"
+        app:digitWidth="35dp"
+        app:digitTextSize="5dp"
+        android:id="@+id/enter_otp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        app:accentType="all"
+        app:digitSpacing="15dp"
+        app:pinInputType="number"
+        app:pinAccentColor="@color/colorAccent"
+        app:accentWidth="3dp"
+        app:mask=""
+        app:digitBackground="@android:color/white"
+        app:digitElevation="4dp"
+        />
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/enter_otp"
+        android:layout_marginTop="30dp"
+        android:text="Enter the otp sent to number"
+        android:layout_height="wrap_content" />
+<LinearLayout
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:layout_marginTop="41dp"
+    android:layout_below="@+id/info"
+    android:layout_centerHorizontal="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <Button
+        android:background="@color/green"
+        android:id="@+id/sign_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Verify" />
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginStart="30dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            android:id="@+id/simple_p_b"
+            android:visibility="visible"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            />
+        <TextView
+            android:id="@+id/timer"
+            android:gravity="center"
+            android:padding="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5:00"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_margin="10dp"
+        android:background="@color/green"
+        android:id="@+id/resend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="resend"
+        android:layout_marginStart="10dp"/>
+</LinearLayout>
+</RelativeLayout>

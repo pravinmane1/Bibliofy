@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CourseActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:minHeight="?attr/actionBarSize"
+        app:title=" " />
+
+    <TextView
+        android:id="@+id/select_course"
+        android:layout_marginTop="50dp"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/green"
+        android:text="SELECT YOUR COURSE"/>
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:id="@+id/course_layout"
+        android:layout_width="300dp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/select_course">
+        <LinearLayout
+            android:gravity="start"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <Spinner
+                android:minWidth="200dp"
+                android:gravity="center"
+                android:id="@+id/course_spinner"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Spinner
+                android:minWidth="200dp"
+                android:gravity="center"
+                android:id="@+id/year_spinner"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Spinner
+                android:visibility="invisible"
+                android:minWidth="200dp"
+                android:gravity="center"
+                android:id="@+id/branch_spinner"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/info"
+        android:layout_below="@+id/course_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:padding="5dp"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="We will let you know for good opportunities and we will guide you for academics throuout the semester."/>
+
+    <Button
+        android:id="@+id/select"
+        android:text="select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info"
+        android:background="@color/green"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"/>
+</RelativeLayout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChangeEmailActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:minHeight="?attr/actionBarSize"
+        app:title=" " />
+
+    <TextView
+        android:id="@+id/change_email"
+        android:layout_marginTop="50dp"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/green"
+        android:text="CHANGE YOUR EMAIL"/>
+    <LinearLayout
+        android:id="@+id/text_fields"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/change_email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp">
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email_layout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:inputType="textEmailAddress"
+            android:hint="Email"
+            android:id="@+id/new_email"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:visibility="gone"
+        android:id="@+id/password_layout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:id="@+id/password"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/info"
+        android:layout_below="@+id/text_fields"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:padding="5dp"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="For verification purpose we'll send an email to old email id."/>
+
+    <Button
+        android:id="@+id/change"
+        android:text="change"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info"
+        android:background="@color/green"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"/>
+</RelativeLayout>

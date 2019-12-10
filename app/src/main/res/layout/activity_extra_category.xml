@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ExtraCategoryActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appbarlayout">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/white"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:minHeight="?attr/actionBarSize"
+            app:titleTextColor="@color/black"
+            app:title="Other Courses" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <EditText
+        android:id="@+id/course_name"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appbarlayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:singleLine="true"
+        android:hint="Enter Course Name"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/branch_name"
+        android:singleLine="true"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/course_name"
+        android:layout_alignStart="@+id/course_name"
+        android:layout_marginTop="30dp"
+        android:hint="Enter Branch if any"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/current_year"
+        android:singleLine="true"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/branch_name"
+        android:layout_alignStart="@+id/course_name"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="Enter Current Year"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/book_name"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/current_year"
+        android:layout_alignStart="@+id/course_name"
+        android:singleLine="true"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="Enter Book Name"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/info"
+        android:drawableLeft="@drawable/ic_action_info"
+        android:drawablePadding="2dp"
+        android:padding="2dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="After requesting you will be shortly notified with the request status. You can check status in requested books section."
+        android:layout_below="@+id/book_name"/>
+
+    <Button
+        android:id="@+id/request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_below="@+id/info"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/button_rect_green"
+        android:text="    Request    "
+        android:layout_marginBottom="15dp"/>
+</RelativeLayout>
