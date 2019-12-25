@@ -11,22 +11,18 @@ import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.twenty80partnership.bibliofy.MyOrdersActivity;
 import com.twenty80partnership.bibliofy.OrderDetailsActivity;
 import com.twenty80partnership.bibliofy.R;
-import com.twenty80partnership.bibliofy.modules.Order;
+import com.twenty80partnership.bibliofy.models.Order;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;

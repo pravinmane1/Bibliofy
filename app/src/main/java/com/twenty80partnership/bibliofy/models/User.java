@@ -1,4 +1,4 @@
-package com.twenty80partnership.bibliofy.modules;
+package com.twenty80partnership.bibliofy.models;
 
 public class User {
     private String name,email,photo,phone,college,courseCode,branchCode,yearCode,semCode,userCode,course,uId,searchName;

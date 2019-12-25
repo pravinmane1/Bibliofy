@@ -14,7 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.twenty80partnership.bibliofy.holders.ItemViewHolder;
-import com.twenty80partnership.bibliofy.modules.Item;
+import com.twenty80partnership.bibliofy.models.Item;
 
 public class BookTypeActivity extends AppCompatActivity {
 

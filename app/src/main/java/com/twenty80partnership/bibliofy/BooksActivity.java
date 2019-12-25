@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,8 +19,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import com.twenty80partnership.bibliofy.holders.ItemViewHolder;
-import com.twenty80partnership.bibliofy.modules.Book;
-import com.twenty80partnership.bibliofy.modules.Item;
+import com.twenty80partnership.bibliofy.models.Item;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

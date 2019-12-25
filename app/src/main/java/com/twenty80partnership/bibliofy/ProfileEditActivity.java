@@ -26,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-import com.twenty80partnership.bibliofy.modules.Address;
+import com.twenty80partnership.bibliofy.models.Address;
 
 import java.util.Objects;
 

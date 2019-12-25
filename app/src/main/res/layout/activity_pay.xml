@@ -36,18 +36,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Cash On delivery"/>
+
         <RadioButton
-            android:id="@+id/paytm"
+            android:id="@+id/upi"
             android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Paytm"/>
-        <RadioButton
-            android:id="@+id/gpay"
-            android:layout_margin="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Google Pay"/>
+            android:text="Google Pay / Paytm UPI / FreeCharge UPI"/>
     </RadioGroup>
 
     <androidx.cardview.widget.CardView

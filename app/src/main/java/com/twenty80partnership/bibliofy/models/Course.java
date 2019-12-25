@@ -1,4 +1,4 @@
-package com.twenty80partnership.bibliofy.modules;
+package com.twenty80partnership.bibliofy.models;
 
 import java.util.ArrayList;
 

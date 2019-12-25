@@ -39,12 +39,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.smarteist.autoimageslider.SliderLayout;
 import com.smarteist.autoimageslider.SliderView;
 import com.squareup.picasso.Picasso;
-import com.twenty80partnership.bibliofy.modules.Banner;
-import com.twenty80partnership.bibliofy.modules.User;
+import com.twenty80partnership.bibliofy.models.Banner;
+import com.twenty80partnership.bibliofy.models.User;
 import com.twenty80partnership.bibliofy.services.ListenOrder;
 import com.twenty80partnership.bibliofy.sql.DatabaseHelper;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

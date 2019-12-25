@@ -24,14 +24,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.twenty80partnership.bibliofy.holders.BookViewHolder;
-import com.twenty80partnership.bibliofy.modules.Book;
-import com.twenty80partnership.bibliofy.modules.Branch;
-import com.twenty80partnership.bibliofy.modules.CartItem;
-import com.twenty80partnership.bibliofy.modules.CodesApplicable;
-import com.twenty80partnership.bibliofy.modules.Item;
-import com.twenty80partnership.bibliofy.modules.Publication;
-import com.twenty80partnership.bibliofy.modules.Sem;
-import com.twenty80partnership.bibliofy.modules.Year;
+import com.twenty80partnership.bibliofy.models.Book;
+import com.twenty80partnership.bibliofy.models.CartItem;
+import com.twenty80partnership.bibliofy.models.CodesApplicable;
+import com.twenty80partnership.bibliofy.models.Item;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

@@ -22,9 +22,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.twenty80partnership.bibliofy.modules.Branch;
-import com.twenty80partnership.bibliofy.modules.Course;
-import com.twenty80partnership.bibliofy.modules.User;
+import com.twenty80partnership.bibliofy.models.Branch;
+import com.twenty80partnership.bibliofy.models.Course;
+import com.twenty80partnership.bibliofy.models.User;
 
 import java.util.ArrayList;
 

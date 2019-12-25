@@ -3,8 +3,6 @@ package com.twenty80partnership.bibliofy;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.renderscript.Sampler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,17 +21,15 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.twenty80partnership.bibliofy.holders.CartItemViewHolder;
 import com.twenty80partnership.bibliofy.holders.CartShortViewHolder;
-import com.twenty80partnership.bibliofy.holders.StationaryItemViewHolder;
-import com.twenty80partnership.bibliofy.modules.Address;
-import com.twenty80partnership.bibliofy.modules.Book;
-import com.twenty80partnership.bibliofy.modules.CartItem;
-import com.twenty80partnership.bibliofy.modules.Order;
-import com.twenty80partnership.bibliofy.modules.PriceDetails;
-import com.twenty80partnership.bibliofy.modules.StationaryItem;
+import com.twenty80partnership.bibliofy.models.Address;
+import com.twenty80partnership.bibliofy.models.Book;
+import com.twenty80partnership.bibliofy.models.CartItem;
+import com.twenty80partnership.bibliofy.models.Order;
+import com.twenty80partnership.bibliofy.models.PriceDetails;
+import com.twenty80partnership.bibliofy.models.StationaryItem;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -75,6 +71,7 @@ public class CartActivity extends AppCompatActivity {
     private PriceDetails details;
     FirebaseAuth mAuth;
     String uid;
+    private Integer amount;
 
 
     @Override
@@ -145,6 +142,8 @@ public class CartActivity extends AppCompatActivity {
         //show cart items added according to time added
         firebaseSearch(cartRef,isAddressEnabled);
 
+
+        showPriceDetails();
 
         //when function count (priceDetails) and user defined (cart requests) count are equal then it shows the data
         //(After checking if there is item in cart)
@@ -294,9 +293,32 @@ public class CartActivity extends AppCompatActivity {
                     }
 
                     if (isPhonePresent){
-                        Intent paymetIntent = new Intent(CartActivity.this,PayActivity.class);
-                        paymetIntent.putExtra("id",id);
-                        startActivityForResult(paymetIntent,4);
+
+                        pd.show();
+
+                        ///prevent addtion of items from same login from different device to pay less amount
+                        priceDetailsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                pd.dismiss();
+
+                                details = dataSnapshot.getValue(PriceDetails.class);
+                               amount = details.getAmountDiscounted();
+
+                                Intent paymentIntent = new Intent(CartActivity.this,PayActivity.class);
+                                paymentIntent.putExtra("id",id);
+                                paymentIntent.putExtra("amount",amount.toString());
+                                startActivityForResult(paymentIntent,4);
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                            pd.dismiss();
+                            }
+                        });
+
 
                     }
                     else {
@@ -354,7 +376,7 @@ public class CartActivity extends AppCompatActivity {
             }
         });
 
-        showPriceDetails();
+
 
     }
 
@@ -401,6 +423,7 @@ public class CartActivity extends AppCompatActivity {
                 //set total amount
                 //amountItemsInt = dataSnapshot.child("amountDiscounted").getValue(Integer.class);
                 amountItems.setText("₹ " + details.getAmountDiscounted());
+                amount = details.getAmountDiscounted();
 
                 //3
                 //set total savings
@@ -829,20 +852,50 @@ public class CartActivity extends AppCompatActivity {
         else if (requestCode == 4){
             Log.d("resultIntent","got requestcode 4");
             if (resultCode == RESULT_OK){
-                Intent orderIntent = new Intent(CartActivity.this,OrderDetailsActivity.class);
-                Order order =(Order) data.getSerializableExtra("order");
-                String source = data.getStringExtra("source");
-                Log.d("debugOrder","orderId in object: "+" ");
-                orderIntent.putExtra("order", order);
-                orderIntent.putExtra("source",source);
-                startActivity(orderIntent);
-               finish();
+
+                if (data.hasExtra("order")){
+                    Intent orderIntent = new Intent(CartActivity.this,OrderDetailsActivity.class);
+                    Order order =(Order) data.getSerializableExtra("order");
+                    String source = data.getStringExtra("source");
+                    Log.d("debugOrder","orderId in object: "+" ");
+                    orderIntent.putExtra("order", order);
+                    orderIntent.putExtra("source",source);
+                    startActivity(orderIntent);
+                    finish();
+                }
+                else{
+                    Intent orderIntent = new Intent(CartActivity.this,MyOrdersActivity.class);
+                    startActivity(orderIntent);
+                    finish();
+                }
+
             }
             else if (requestCode == 5){
                 if (resultCode == RESULT_OK){
-                    Intent paymetIntent = new Intent(CartActivity.this,PayActivity.class);
-                    paymetIntent.putExtra("id",id);
-                    startActivityForResult(paymetIntent,4);
+
+                    pd.show();
+                    priceDetailsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                            pd.dismiss();
+
+                            details = dataSnapshot.getValue(PriceDetails.class);
+                            amount = details.getAmountDiscounted();
+
+                            Intent paymentIntent = new Intent(CartActivity.this,PayActivity.class);
+                            paymentIntent.putExtra("id",id);
+                            paymentIntent.putExtra("amount",amount);
+                            startActivityForResult(paymentIntent,4);
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        pd.dismiss();
+                        }
+                    });
+
                 }
                 else if(resultCode == RESULT_CANCELED){
                     Toast.makeText(CartActivity.this,"Phone number verification failed. Please Try Again!!",Toast.LENGTH_SHORT).show();

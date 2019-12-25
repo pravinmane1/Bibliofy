@@ -24,7 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.twenty80partnership.bibliofy.modules.Address;
+import com.twenty80partnership.bibliofy.models.Address;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

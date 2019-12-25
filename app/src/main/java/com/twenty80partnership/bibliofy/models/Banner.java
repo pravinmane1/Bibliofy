@@ -1,4 +1,4 @@
-package com.twenty80partnership.bibliofy.modules;
+package com.twenty80partnership.bibliofy.models;
 
 public class Banner implements Comparable<Banner>{
     private String id,img,name;

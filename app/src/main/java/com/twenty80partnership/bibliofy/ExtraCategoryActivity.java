@@ -23,7 +23,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.twenty80partnership.bibliofy.modules.RequestBook;
+import com.twenty80partnership.bibliofy.models.RequestBook;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

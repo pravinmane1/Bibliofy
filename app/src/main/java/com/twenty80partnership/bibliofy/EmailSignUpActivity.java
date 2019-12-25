@@ -25,10 +25,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.twenty80partnership.bibliofy.modules.Branch;
-import com.twenty80partnership.bibliofy.modules.Course;
-import com.twenty80partnership.bibliofy.modules.User;
-import com.twenty80partnership.bibliofy.modules.Year;
+import com.twenty80partnership.bibliofy.models.Branch;
+import com.twenty80partnership.bibliofy.models.Course;
+import com.twenty80partnership.bibliofy.models.User;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -38,7 +37,6 @@ import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.ScrollingTabContainerView;
 import androidx.appcompat.widget.Toolbar;
 
 public class EmailSignUpActivity extends AppCompatActivity {

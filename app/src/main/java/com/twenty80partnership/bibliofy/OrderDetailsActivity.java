@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.client.Firebase;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,11 +25,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.twenty80partnership.bibliofy.holders.CartShortViewHolder;
-import com.twenty80partnership.bibliofy.modules.Address;
-import com.twenty80partnership.bibliofy.modules.Book;
-import com.twenty80partnership.bibliofy.modules.CartItem;
-import com.twenty80partnership.bibliofy.modules.Order;
-import com.twenty80partnership.bibliofy.modules.PriceDetails;
+import com.twenty80partnership.bibliofy.models.Address;
+import com.twenty80partnership.bibliofy.models.Book;
+import com.twenty80partnership.bibliofy.models.Order;
+import com.twenty80partnership.bibliofy.models.PriceDetails;
 
 public class OrderDetailsActivity extends AppCompatActivity {
 

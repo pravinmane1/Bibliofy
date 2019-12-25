@@ -1,4 +1,4 @@
-package com.twenty80partnership.bibliofy.modules;
+package com.twenty80partnership.bibliofy.models;
 
 public class StationaryItem {
     private String name,company,img,ink,type,warranty,features,quantityFlag,id,category;

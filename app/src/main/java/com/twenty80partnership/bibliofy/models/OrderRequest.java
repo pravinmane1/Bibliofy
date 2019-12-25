@@ -1,14 +1,32 @@
-package com.twenty80partnership.bibliofy.modules;
+package com.twenty80partnership.bibliofy.models;
 
 public class OrderRequest {
     String addressId,method;
     Long userTimeAdded;
+    String tsnId;
+    String targetUpi;
 
     public OrderRequest() {
     }
 
     public Long getUserTimeAdded() {
         return userTimeAdded;
+    }
+
+    public String getTsnId() {
+        return tsnId;
+    }
+
+    public String getTargetUpi() {
+        return targetUpi;
+    }
+
+    public void setTargetUpi(String targetUpi) {
+        this.targetUpi = targetUpi;
+    }
+
+    public void setTsnId(String tsnId) {
+        this.tsnId = tsnId;
     }
 
     public void setUserTimeAdded(Long userTimeAdded) {

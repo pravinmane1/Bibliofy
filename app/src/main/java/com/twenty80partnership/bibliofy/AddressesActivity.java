@@ -18,22 +18,12 @@ import android.widget.Toast;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.twenty80partnership.bibliofy.holders.AddressViewHolder;
-import com.twenty80partnership.bibliofy.holders.CartItemViewHolder;
-import com.twenty80partnership.bibliofy.modules.Address;
-import com.twenty80partnership.bibliofy.modules.Book;
-import com.twenty80partnership.bibliofy.modules.CartItem;
-
-import java.util.ArrayList;
-import java.util.Calendar;
+import com.twenty80partnership.bibliofy.models.Address;
 
 public class AddressesActivity extends AppCompatActivity {
     CardView addAddress;
