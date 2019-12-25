@@ -1,6 +1,7 @@
 package com.twenty80partnership.bibliofy;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,6 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     ProgressDialog pd;
     FirebaseAuth mAuth;
+    private boolean addressPresent = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +105,13 @@ public class ProfileActivity extends AppCompatActivity {
         addresses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ProfileActivity.this,AddressesActivity.class));
+                if (addressPresent){
+                    startActivity(new Intent(ProfileActivity.this,AddressesActivity.class));
+                }
+                else {
+                    //startActivity(new Intent(ProfileActivity.this,AddressesActivity.class));
+                    startActivityForResult(new Intent(ProfileActivity.this,AddAddressActivity.class),1);
+                }
             }
         });
 
@@ -238,6 +246,7 @@ public class ProfileActivity extends AppCompatActivity {
                     addresses.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_action_forward_arrow,0);
                 }
                 else {
+                    addressPresent = false;
                     addresses.setText("Add Address");
                     addresses.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_action_add,0);
                 }
@@ -359,7 +368,16 @@ public class ProfileActivity extends AppCompatActivity {
 // [END reauthenticate]
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode==1){
+            if (resultCode==RESULT_OK){
+                addressPresent = true;
+                startActivity(new Intent(ProfileActivity.this,AddressesActivity.class));
+            }
 
-
+        }
+    }
 }

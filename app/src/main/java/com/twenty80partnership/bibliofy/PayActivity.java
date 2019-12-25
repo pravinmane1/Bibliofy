@@ -139,7 +139,23 @@ public class PayActivity extends AppCompatActivity implements ActionSheet.MenuIt
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getValue()!=null){
-                    payableAmount.setText(dataSnapshot.getValue().toString());
+                  final Integer amount =  dataSnapshot.getValue(Integer.class);
+                    DatabaseReference deliveryRef = FirebaseDatabase.getInstance().getReference("Delivery");
+
+                    deliveryRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            pd.dismiss();
+                            Integer d = dataSnapshot.child("basic").child("rate").getValue(Integer.class);
+                            Integer total = d + amount;
+                           payableAmount.setText(total.toString());
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
             }
 

@@ -301,15 +301,30 @@ public class CartActivity extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                                pd.dismiss();
+
 
                                 details = dataSnapshot.getValue(PriceDetails.class);
                                amount = details.getAmountDiscounted();
 
-                                Intent paymentIntent = new Intent(CartActivity.this,PayActivity.class);
-                                paymentIntent.putExtra("id",id);
-                                paymentIntent.putExtra("amount",amount.toString());
-                                startActivityForResult(paymentIntent,4);
+                               deliveryRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                   @Override
+                                   public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                       pd.dismiss();
+                                        Integer d = dataSnapshot.child("basic").child("rate").getValue(Integer.class);
+                                        Integer total = d + amount;
+                                       Intent paymentIntent = new Intent(CartActivity.this,PayActivity.class);
+                                       paymentIntent.putExtra("id",id);
+                                       paymentIntent.putExtra("amount",total.toString());
+                                       startActivityForResult(paymentIntent,4);
+
+                                   }
+
+                                   @Override
+                                   public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                   }
+                               });
+
 
                             }
 
