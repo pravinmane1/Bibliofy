@@ -338,6 +338,7 @@ public class CartActivity extends AppCompatActivity {
                     }
                     else {
                         Intent addPhoneIntent = new Intent(CartActivity.this,PhoneNumberActivity.class);
+                        addPhoneIntent.putExtra("loginFlow","no");
                         startActivityForResult(addPhoneIntent,5);
                     }
 

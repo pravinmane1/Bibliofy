@@ -14,11 +14,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,20 +55,7 @@ public class AddAddressActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         addressesRef = FirebaseDatabase.getInstance().getReference("Addresses").child(mAuth.getCurrentUser().getUid());
 
-        //set toolbar as actionBar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Intent intent = getIntent();
-
-        if (intent.getStringExtra("id")!=null){
-            editCall = true;
-            editId = intent.getStringExtra("id");
-            setData(editId);
-            Log.d("recycle debug",editId);
-
-        }
 
         pd = new ProgressDialog(AddAddressActivity.this);
         pd.setMessage("Loading");
@@ -83,6 +73,27 @@ public class AddAddressActivity extends AppCompatActivity {
         radioGroup = findViewById(R.id.type_group);
         update = findViewById(R.id.update);
 
+        //set toolbar as actionBar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Intent intent = getIntent();
+
+        if (intent.getStringExtra("id")!=null){
+            editCall = true;
+            editId = intent.getStringExtra("id");
+            setData(editId);
+            Log.d("recycle debug",editId);
+
+        }
+        else {
+            addBasicDetails();
+        }
+
+
+
+
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,10 +101,33 @@ public class AddAddressActivity extends AppCompatActivity {
                 if (validate()){
                     addAddress();
                 }
+
             }
         });
 
 
+    }
+
+    private void addBasicDetails() {
+
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        for (UserInfo profile : user.getProviderData()) {
+            // Id of the provider (ex: google.com)
+            String providerId = profile.getProviderId();
+
+            if(providerId.equals("firebase")){
+
+                String phone = profile.getPhoneNumber();
+                phone = phone.substring(3);
+                String name1 = profile.getDisplayName();
+
+                number.setText(phone);
+                name.setText(name1);
+                break;
+            }
+
+        }
     }
 
     private void setData(String id) {

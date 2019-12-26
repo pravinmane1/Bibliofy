@@ -130,9 +130,9 @@ public class PhoneVerificationActivity extends AppCompatActivity {
                     }
                     else {
                         pd.dismiss();
-                        Intent rIntent = new Intent();
-                        setResult(RESULT_CANCELED, rIntent);
-                        finish();
+                        //Intent rIntent = new Intent();
+                        //setResult(RESULT_CANCELED, rIntent);
+                        //finish();
                         Toast.makeText(PhoneVerificationActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
 
