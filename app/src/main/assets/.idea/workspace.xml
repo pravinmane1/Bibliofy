@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3b35640c-d0ca-47e1-ab62-df676d26eb63" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../../.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../.idea/navEditor.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../appicon_compressed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/andika2.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery_boy.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/error.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tick.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/CommonActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/ReLoginActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/SplashScreenActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/SplashScreenNextActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/adapters/MySpinnerAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/adapters/SliderAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/holders/MenuItemViewHolder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/holders/SearchItemViewHolder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/holders/WishlistViewHolder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/ItemMeta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/MenuItem1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/OrderThumb.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/SearchIndex.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/SearchItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/SliderItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/Status.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/StatusStack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/UserCourse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/ui/home/HomeFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/ui/home/HomeViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/ui/orders/OrdersFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/ui/orders/OrdersViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/ui/profile/ProfileFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/ui/profile/ProfileViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/ui/search/SearchFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/ui/search/SearchViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/anim/fade_transition_animation.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable-anydpi/cancel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable-anydpi/setting.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable-anydpi/slit_border_white_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable-hdpi/cancel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable-hdpi/setting.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable-mdpi/cancel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable-mdpi/setting.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable-xhdpi/cancel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable-xhdpi/setting.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable-xxhdpi/cancel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable-xxhdpi/setting.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable-xxxhdpi/borderless_white.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/about.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/backg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/background_login.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/bg_splashscreen.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/borderless_colored.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/borderless_full_white.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/bottom_sheet_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/call.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/cart.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/circle_back.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/google.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/heart.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/help.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/home.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/ic_dashboard_black_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/ic_home_black_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/ic_notifications_black_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/location.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/login_background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/logout.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/loupe.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/my_course.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/name.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/newset.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/ninja.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/orders.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/owl.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/password.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/plane.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/profile.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/refer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/round_corner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/search.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/search_bar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/shelf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/smartphone.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/user_av.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/user_av_female.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/drawable/user_humaan.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/layout/activity_common.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/layout/activity_re_login.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/layout/activity_splash_screen_next.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/layout/fragment_home.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/layout/fragment_orders.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/layout/fragment_profile.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/layout/fragment_search.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/layout/layout_bottom_sheet.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/layout/menu_item_row.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/layout/search_item_view.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/layout/slide_item_container.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/layout/wishlist_row.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/menu/bottom_nav_menu.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/navigation/mobile_navigation.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/values/dimens.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/values/font_certs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../res/values/preloaded_fonts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/assetWizardSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/AboutActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/AboutActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/AddAddressActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/AddAddressActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/AddressesActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/AddressesActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/AvlCategoryActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/AvlCategoryActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/BookDetailsActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/BookTypeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/BookTypeActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/BooksActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/BooksActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/CartActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/CartActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/CourseActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/CourseActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/DashboardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/DashboardActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/EmailLoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/EmailLoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/EmailSignUpActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/EmailSignUpActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/ExamsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/ExamsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/HelpAndSupportActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/HelpAndSupportActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/MyOrdersActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/MyOrdersActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/OrderDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/OrderDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/PayActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/PayActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/PhoneNumberActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/PhoneNumberActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/PhoneVerificationActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/PhoneVerificationActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/ProfileEditActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/ProfileEditActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/StationaryActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/StationaryActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/StationaryItemsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/StationaryItemsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/WishlistActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/WishlistActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/holders/BookViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/holders/BookViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/holders/CartItemViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/holders/CartItemViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/holders/CartShortViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/holders/CartShortViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/holders/ItemViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/holders/ItemViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/holders/OrderViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/holders/OrderViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/holders/StationaryItemViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/holders/StationaryItemViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/holders/StationaryListViewHolder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/Branch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/CartItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/CartItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/CodesApplicable.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/ApplicableTerm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/OrderRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/OrderRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/PriceDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/PriceDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/StationaryItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/StationaryItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/UpiTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/UpiTransaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/services/ListenOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/services/ListenOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/services/MyFirebaseMessagingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/services/MyFirebaseMessagingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/sql/DatabaseHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/com/twenty80partnership/bibliofy/sql/DatabaseHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/drawable-anydpi/cart.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/drawable-hdpi/cart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/drawable-mdpi/cart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/drawable-xhdpi/cart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/drawable-xxhdpi/cart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/drawable-xxxhdpi/button_rect_green.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/drawable/cart_black.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/drawable/cart_blue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/drawable/emptycart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_about.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_about.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_add_address.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_add_address.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_addresses.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_addresses.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_avl_category.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_avl_category.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_book_type.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_book_type.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_books.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_books.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_cart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_cart.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_change_email.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_change_email.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_change_password.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_change_password.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_course.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_course.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_details_book.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_email_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_email_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_email_sign_up.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_email_sign_up.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_extra_category.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_extra_category.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_order_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_order_details.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_password.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_password.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_pay.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_pay.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_phone_number.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_phone_number.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_phone_verification.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_phone_verification.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_profile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_profile_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_profile_edit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_stationary_items.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_stationary_items.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/activity_wishlist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/activity_wishlist.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/book_row.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/book_row.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/cart_item_row.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/cart_item_row.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/cart_short_row.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/cart_short_row.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/drawer_header.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/drawer_header.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/item_row.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/item_row.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/order_row.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/order_row.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/placeholder.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/placeholder.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/spinner_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/spinner_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/spinner_item2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/spinner_item2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/stationary_item_row.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/layout/stationary_item_row.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/layout/stationary_row.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/menu/avl_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/menu/avl_menu.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/menu/dashboard_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/menu/cart_only_menu.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/values-v21/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/values-v21/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/values/dimen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/values/dimen.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectId" id="1aj3wVe7VisajwOiAguhBtQyeyn" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3b35640c-d0ca-47e1-ab62-df676d26eb63" name="Default Changelist" comment="" />
+      <created>1587235414537</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1587235414537</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
