@@ -1,84 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <androidx.cardview.widget.CardView
-    android:foreground="?android:attr/selectableItemBackground"
-    android:clickable="true"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/order_card"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_marginTop="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <LinearLayout
+        android:id="@+id/ll_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:focusable="true">
+        android:orientation="horizontal"
+        android:weightSum="10">
+
         <LinearLayout
-            android:weightSum="10"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="150dp">
-            <LinearLayout
-                android:layout_weight="6.5"
-                android:orientation="vertical"
-                android:layout_width="0dp"
-                android:layout_height="match_parent">
-                <TextView
-                    android:id="@+id/order_id"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="order id: dsldksde3l"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6.5"
+            android:orientation="vertical">
+
+            <TextView
+
+                android:id="@+id/order_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/andika_font"
+                android:gravity="center"
+                android:text="Order Placed"
+                android:textColor="@color/deepPurple"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/order_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/andika_font"
+                android:text="order id: 12131535656"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/andika_font"
+                android:text="6 items"
+                android:textColor="@color/black"
+                android:textSize="26dp" />
+
+            <TextView
+                android:id="@+id/delivery_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/andika_font"
+                android:text="Delivered by tomorrow"
+                android:textSize="18dp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3.5"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3">
 
                 <TextView
                     android:id="@+id/date"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_height="wrap_content"
-                    android:text="5-6-2019"/>
-                <TextView
-                    android:textColor="@color/header"
-                    android:id="@+id/count"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="15dp"
-                    android:textSize="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="6 items"/>
-                <TextView
-                    android:id="@+id/delivery_date"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginStart="15dp"
-                    android:textSize="18dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Delivered by tomorrow"/>
-            </LinearLayout>
-            <LinearLayout
-                android:gravity="center"
-                android:orientation="vertical"
-                android:layout_width="0dp"
-                android:layout_weight="3.5"
-                android:weightSum="10"
-                android:layout_height="match_parent">
-                <LinearLayout
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_weight="4"
-                    android:layout_height="0dp">
-                <TextView
-                    android:textColor="@color/green"
-                    android:padding="5dp"
-                    android:id="@+id/order_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Order Placed"
-                    android:gravity="center"/>
-                </LinearLayout>
+                    android:fontFamily="@font/andika_font"
+                    android:text="5-6-2019"
+                    android:textColor="@color/black" />
+
+            </RelativeLayout>
+
             <ImageView
                 android:id="@+id/more"
-                android:src="@drawable/ic_action_forward_arrow"
                 android:layout_width="match_parent"
-                android:layout_weight="6"
-                android:layout_height="0dp" />
-            </LinearLayout>
+                android:layout_height="0dp"
+                android:layout_weight="7"
+                app:srcCompat="@drawable/ic_action_forward_arrow" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

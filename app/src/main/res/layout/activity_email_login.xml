@@ -11,102 +11,125 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title=" " />
 
     <androidx.cardview.widget.CardView
+
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:id="@+id/login_card"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <LinearLayout
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="20dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/id_password"
-        android:layout_marginBottom="50dp"
-        android:textSize="30sp"
-        android:text="Bibliofy"
-        android:textColor="@color/header"
-        android:fontFamily="casual"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-        />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/id_password"
+                android:layout_marginBottom="50dp"
+                android:fontFamily="@font/andika_font"
+                android:text="Bookambo"
+                android:textColor="@color/header"
+                android:textSize="30sp"
+                tools:ignore="HardcodedText,ObsoleteLayoutParam" />
 
-    <LinearLayout
-        android:id="@+id/id_password"
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="300dp"
-            android:layout_marginTop="25dp"
-            android:layout_height="wrap_content">
-    <EditText
-        android:hint="Email"
-        android:id="@+id/email"
-        android:drawableStart="@drawable/ic_action_user_dark"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/green"
-        android:ems="10"
-        android:inputType="textEmailAddress" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="300dp"
-            android:layout_marginTop="25dp"
-            android:layout_height="wrap_content">
-    <EditText
-        android:hint="Password"
-        android:id="@+id/password"
-        android:drawableStart="@drawable/ic_action_password_dark"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/green"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/id_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_rect_green"
-        android:text="login"
-        android:textColor="@color/black"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/id_password"/>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp">
+
+                    <EditText
+                        android:id="@+id/email"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="no"
+                        android:backgroundTint="@color/green"
+                        android:drawableStart="@drawable/ic_action_user_dark"
+                        android:ems="10"
+                        android:fontFamily="@font/andika_font"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress"
+                        tools:ignore="HardcodedText,UnusedAttribute" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp">
+
+                    <EditText
+                        android:id="@+id/password"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:autofillHints="no"
+                        android:backgroundTint="@color/green"
+                        android:drawableStart="@drawable/ic_action_password_dark"
+                        android:ems="10"
+                        android:fontFamily="@font/andika_font"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        tools:ignore="HardcodedText,UnusedAttribute" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/login"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/borderless_colored"
+                android:fontFamily="@font/andika_font"
+                android:text="login"
+                android:textColor="@color/blue"
+                tools:ignore="HardcodedText" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right">
-            <TextView
-                android:id="@+id/forgot_password"
-                android:layout_margin="2dp"
-                android:gravity="right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Forgot Password?"/>
+
+                <TextView
+                    android:id="@+id/forgot_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:fontFamily="@font/andika_font"
+                    android:gravity="right"
+                    android:text="Forgot Password?"
+                    tools:ignore="HardcodedText,RtlHardcoded" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
     <TextView
+        android:visibility="gone"
         android:id="@+id/sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/login_card"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
+        android:fontFamily="@font/andika_font"
+        android:padding="5dp"
+        android:text="New User? Sign Up"
         android:textColor="@color/green"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:padding="5dp"
-        android:text="New User? Sign Up"/>
+        tools:ignore="HardcodedText" />
 </RelativeLayout>

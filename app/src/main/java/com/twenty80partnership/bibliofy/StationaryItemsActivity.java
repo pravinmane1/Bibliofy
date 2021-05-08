@@ -4,17 +4,28 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.L;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,9 +33,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.twenty80partnership.bibliofy.holders.StationaryItemViewHolder;
 import com.twenty80partnership.bibliofy.models.CartItem;
 import com.twenty80partnership.bibliofy.models.CountData;
+import com.twenty80partnership.bibliofy.models.SearchIndex;
 import com.twenty80partnership.bibliofy.models.StationaryItem;
 
 import java.text.DateFormat;
@@ -34,13 +47,22 @@ import java.util.Date;
 
 public class StationaryItemsActivity extends AppCompatActivity {
     RecyclerView stationaryList;
-    DatabaseReference stationaryRef,cartReqRef,selectCountRef;
+    DatabaseReference cartReqRef,selectCountRef;
     Date currentTime;
     DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-    String location;
     ValueEventListener bottomUpdate;
     TextView showCartCount;
-    LinearLayout bottom;
+    RelativeLayout bottom;
+
+    String type,typeName;
+    RecyclerView itemList;
+    EditText id;
+    private FloatingActionButton mFloatingActionButton;
+    MaterialSearchBar materialSearchBar;
+    private Query query;
+    String source;
+
+    private FirebaseRecyclerAdapter<StationaryItem, StationaryItemViewHolder> firebaseRecyclerAdapter;
 
 
     @Override
@@ -48,25 +70,33 @@ public class StationaryItemsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stationary_items);
 
-        Intent intent = getIntent();
+        type = getIntent().getStringExtra("stationaryId");
+        typeName = getIntent().getStringExtra("categoryName");
+        source = getIntent().getStringExtra("source");
 
-        location = intent.getStringExtra("location");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+        if (type==null || type.equals("")){
+            finish();
+        }
+
+        final DatabaseReference SPPUstationaryRef = FirebaseDatabase.getInstance().getReference("SPPUstationary").child(type);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle(location);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setTitle(typeName);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
 
          showCartCount = findViewById(R.id.show_cart_count);
          bottom = findViewById(R.id.bottom_layout);
 
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-        stationaryRef = FirebaseDatabase.getInstance().getReference("SPPUstationary").child(location);
         cartReqRef=FirebaseDatabase.getInstance().getReference("CartReq").child( mAuth.getCurrentUser().getUid() );
-        selectCountRef=FirebaseDatabase.getInstance().getReference("CountData").child( mAuth.getCurrentUser().getUid() ).child("stationary").child(location);
+        selectCountRef=FirebaseDatabase.getInstance().getReference("CountData").child( mAuth.getCurrentUser().getUid() ).child("stationary").child(type);
 
 
         //to update the bottom
@@ -74,18 +104,8 @@ public class StationaryItemsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                long count=0L;
+                    long count = dataSnapshot.getChildrenCount();
 
-                if (dataSnapshot.child("books").exists()){
-
-                    count = dataSnapshot.child("books").getChildrenCount();
-
-                }
-
-                if (dataSnapshot.child("stationary").exists()){
-
-                    count = count + dataSnapshot.child("stationary").getChildrenCount();
-                }
 
                 if (count == 1) {
                     showCartCount.setText(count + " item in Cart");
@@ -106,31 +126,47 @@ public class StationaryItemsActivity extends AppCompatActivity {
             }
         };
 
+        bottom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (source!=null && source.equals("cart")){
+                    finish();
+                }
+            }
+        });
+
         cartReqRef.addValueEventListener(bottomUpdate);
 
-        stationaryList = findViewById(R.id.recycler_view);
+        itemList = findViewById(R.id.recycler_view);
+        itemList.setHasFixedSize(false);
+        itemList.setLayoutManager(new GridLayoutManager(this,2));
 
-        stationaryList.setHasFixedSize(true);
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-        // GridLayout gridLayout = new GridLayout(this);
-        stationaryList.setLayoutManager(mLayoutManager);
 
-        Query q = stationaryRef.orderByChild("price");
-
-        firebaseSearch(q);
+        firebaseSearch(SPPUstationaryRef);
 
     }
 
-    private void firebaseSearch(Query query) {
+    public void firebaseSearch(Query q) {
 
+        FirebaseRecyclerOptions<StationaryItem> options = new FirebaseRecyclerOptions.Builder<StationaryItem>()
+                .setQuery(q, StationaryItem.class)
+                .build();
 
-        FirebaseRecyclerAdapter<StationaryItem, StationaryItemViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<StationaryItem, StationaryItemViewHolder>(
-                StationaryItem.class, R.layout.stationary_item_row, StationaryItemViewHolder.class, query
-        ) {
+        firebaseRecyclerAdapter
+                = new FirebaseRecyclerAdapter<StationaryItem, StationaryItemViewHolder>(options) {
+
+            @NonNull
+            @Override
+            public StationaryItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.stationary_item_row,parent,false);
+
+                return new StationaryItemViewHolder(view);
+            }
 
             @Override
-            protected void populateViewHolder(final StationaryItemViewHolder viewHolder, final StationaryItem model, final int position)  {
-
+            protected void onBindViewHolder(@NonNull StationaryItemViewHolder viewHolder, int position, @NonNull StationaryItem model) {
                 //reset the viewholder before getting data from the countdata
                 model.setQuantityFlag("notAdded");
                 model.setQuantity(1);
@@ -140,6 +176,7 @@ public class StationaryItemsActivity extends AppCompatActivity {
 
                 viewHolder.add.setText("ADD");
                 viewHolder.add.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+
 
                 viewHolder.plus.getLayoutParams().height = (int) getResources().getDimension(R.dimen.original_height);
                 viewHolder.plus.getLayoutParams().width = (int) getResources().getDimension(R.dimen.original_width);
@@ -168,18 +205,18 @@ public class StationaryItemsActivity extends AppCompatActivity {
                                 //if available set added
 
 
-                                    viewHolder.removeItem.setVisibility(View.VISIBLE);
-                                    model.setQuantityFlag("added");
+                                viewHolder.removeItem.setVisibility(View.VISIBLE);
+                                model.setQuantityFlag("added");
 
-                                    viewHolder.add.setText("ADDED");
-                                    viewHolder.add.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.neongreen));
-                                    viewHolder.add.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.checked, 0);
+                                viewHolder.add.setText("ADDED");
+                                //viewHolder.add.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.neongreen));
+                                viewHolder.add.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.checked, 0);
 
-                                    viewHolder.plus.getLayoutParams().height = (int) getResources().getDimension(R.dimen.imageview_height);
-                                    viewHolder.plus.getLayoutParams().width = (int) getResources().getDimension(R.dimen.imageview_width);
+                                viewHolder.plus.getLayoutParams().height = (int) getResources().getDimension(R.dimen.imageview_height);
+                                viewHolder.plus.getLayoutParams().width = (int) getResources().getDimension(R.dimen.imageview_width);
 
-                                    viewHolder.minus.getLayoutParams().height = (int) getResources().getDimension(R.dimen.imageview_height);
-                                    viewHolder.minus.getLayoutParams().width = (int) getResources().getDimension(R.dimen.imageview_width);
+                                viewHolder.minus.getLayoutParams().height = (int) getResources().getDimension(R.dimen.imageview_height);
+                                viewHolder.minus.getLayoutParams().width = (int) getResources().getDimension(R.dimen.imageview_width);
 
                             }
 
@@ -231,10 +268,10 @@ public class StationaryItemsActivity extends AppCompatActivity {
 
 
                 //set details of book to card
-                viewHolder.setDetails(model.getName(),model.getCompany(),model.getImg(),getApplicationContext(),
-                    model.getInk(),model.getPages(),model.getType(),model.getWarranty(),model.getFeatures(),
-                    model.getDiscountedPrice(),model.getDiscount()
-                    ,model.getOriginalPrice());
+
+                viewHolder.setDetails(model.getName(),model.getImg(),model.getAtr1(),model.getAtr2(),model.getAtr3(),
+                        model.getAtr4(),model.getDiscount(),model.getDiscountedPrice()
+                        ,model.getOriginalPrice(),model.getAvailability());
 
 
                 //add button
@@ -242,42 +279,43 @@ public class StationaryItemsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                            String id=model.getId();
+                        String id=model.getId();
 
-                            //set the added value to the database of count
-                            CountData countData=new CountData();
-                            countData.setStatus(true);
-                            countData.setQuantity(model.getQuantity());
-                            selectCountRef.child(id).setValue(countData);
+                        //set the added value to the database of count
+                        CountData countData=new CountData();
+                        countData.setStatus(true);
+                        countData.setQuantity(model.getQuantity());
+                        selectCountRef.child(id).setValue(countData);
 
-                            //get the time to add to item added time
-                            currentTime= Calendar.getInstance().getTime();
-                            String date=dateFormat.format(currentTime);
+                        //get the time to add to item added time
+                        currentTime= Calendar.getInstance().getTime();
+                        String date=dateFormat.format(currentTime);
 
-                            //add to cart
-                            CartItem cartItem=new CartItem();
-                            cartItem.setTimeAdded(Long.parseLong(date));
-                            cartItem.setQuantity(model.getQuantity());
-                            cartItem.setItemId(id);
-                            cartItem.setItemLocation("SPPUstationary/"+location);
+                        //add to cart
+                        CartItem cartItem=new CartItem();
+                        cartItem.setTimeAdded(Long.parseLong(date));
+                        cartItem.setQuantity(model.getQuantity());
+                        cartItem.setItemId(id);
+                        cartItem.setType("stationary");
+                        cartItem.setItemLocation("SPPUstationary/"+type);
 
-                            cartReqRef.child("stationary").child(id).setValue(cartItem);
+                        cartReqRef.child(id).setValue(cartItem);
 
-                            //   if (model.getQuantityFlag().equals("notAdded")) {
+                        //   if (model.getQuantityFlag().equals("notAdded")) {
 
-                            viewHolder.add.setText("ADDED");
-                            viewHolder.add.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.neongreen));
-                            viewHolder.add.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.checked, 0);
+                        viewHolder.add.setText("ADDED");
+                        //viewHolder.add.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.neongreen));
+                        viewHolder.add.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.checked, 0);
 
-                            model.setQuantityFlag("added");
+                        model.setQuantityFlag("added");
 
-                            viewHolder.plus.getLayoutParams().height = (int) getResources().getDimension(R.dimen.imageview_height);
-                            viewHolder.plus.getLayoutParams().width = (int) getResources().getDimension(R.dimen.imageview_width);
+                        viewHolder.plus.getLayoutParams().height = (int) getResources().getDimension(R.dimen.imageview_height);
+                        viewHolder.plus.getLayoutParams().width = (int) getResources().getDimension(R.dimen.imageview_width);
 
-                            viewHolder.minus.getLayoutParams().height = (int) getResources().getDimension(R.dimen.imageview_height);
-                            viewHolder.minus.getLayoutParams().width = (int) getResources().getDimension(R.dimen.imageview_width);
+                        viewHolder.minus.getLayoutParams().height = (int) getResources().getDimension(R.dimen.imageview_height);
+                        viewHolder.minus.getLayoutParams().width = (int) getResources().getDimension(R.dimen.imageview_width);
 
-                            viewHolder.removeItem.setVisibility(View.VISIBLE);
+                        viewHolder.removeItem.setVisibility(View.VISIBLE);
 
 
                     }
@@ -290,7 +328,7 @@ public class StationaryItemsActivity extends AppCompatActivity {
                         if (model.getQuantity()<100 ) {
                             if (model.getQuantityFlag().equals("added")){
                                 viewHolder.add.setText("UPDATE");
-                                viewHolder.add.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.green));
+                                //viewHolder.add.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.green));
                                 viewHolder.add.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
                             }
 
@@ -314,7 +352,7 @@ public class StationaryItemsActivity extends AppCompatActivity {
                         if (model.getQuantity()>1) {
                             if (model.getQuantityFlag().equals("added")){
                                 viewHolder.add.setText("UPDATE");
-                                viewHolder.add.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.green));
+                                //viewHolder.add.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.green));
                                 viewHolder.add.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
                             }
                             model.setQuantity(model.getQuantity() - 1);
@@ -335,7 +373,7 @@ public class StationaryItemsActivity extends AppCompatActivity {
                         String id=model.getId();
 
 
-                        cartReqRef.child("stationary").child(id).removeValue();
+                        cartReqRef.child(id).removeValue();
                         selectCountRef.child(id).removeValue();
 
                         viewHolder.removeItem.setVisibility(View.GONE);
@@ -356,15 +394,28 @@ public class StationaryItemsActivity extends AppCompatActivity {
                     }
                 });
 
+
+
+
+
+
+
+
+
+
+
+
+//
+//                viewHolder.setDetails(model.getBrand(),model.getImg(),getApplicationContext(),model.getAtr1(),model.getAtr2(),model.getAtr3(),
+//                        model.getAtr4(),model.getDiscount(),model.getDiscountedPrice()
+//                        ,model.getOriginalPrice(),model.getAvailability());
+
             }
-
-
         };
 
 
-        stationaryList.setAdapter(firebaseRecyclerAdapter);
-
-
+        itemList.setAdapter(firebaseRecyclerAdapter);
+        firebaseRecyclerAdapter.startListening();
     }
 
     @Override
@@ -373,4 +424,11 @@ public class StationaryItemsActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    protected void onDestroy() {
+
+        if (firebaseRecyclerAdapter!=null)
+            firebaseRecyclerAdapter.stopListening();
+        super.onDestroy();
+    }
 }

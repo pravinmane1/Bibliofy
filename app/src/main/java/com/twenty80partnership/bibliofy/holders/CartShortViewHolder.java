@@ -3,7 +3,9 @@ package com.twenty80partnership.bibliofy.holders;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,25 +18,30 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class CartShortViewHolder extends RecyclerView.ViewHolder {
 
-private View mView;
+    private View mView;
 
-public CartShortViewHolder(View itemView) {
+    public CartShortViewHolder(View itemView) {
         super(itemView);
         mView = itemView;
 
-        }
+    }
 
-@SuppressLint("SetTextI18n")
-public void setDetails(String name, String publication,Integer discountedPrice) {
+    @SuppressLint("SetTextI18n")
+    public void setDetails(String name, String img, Integer discountedPrice) {
 
-       TextView itemName=mView.findViewById(R.id.name);
-        TextView itemPublication=mView.findViewById(R.id.publicatioin);
-        TextView itemDiscountedPrice=mView.findViewById(R.id.price);
+        TextView itemName = mView.findViewById(R.id.name);
+        TextView itemPrice = mView.findViewById(R.id.price);
+        ImageView itemPic = mView.findViewById(R.id.pic);
 
+        if (img != null && !img.equals(""))
+            Picasso.get().load(img).into(itemPic);
+
+        if (name!=null && !name.isEmpty())
         itemName.setText(name);
-        itemPublication.setText(publication);
-        itemDiscountedPrice.setText("₹ "+discountedPrice.toString());
-        }
 
-        }
+        if (discountedPrice!=null)
+        itemPrice.setText("₹ " + discountedPrice);
+    }
+
+}
 

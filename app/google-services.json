@@ -15,11 +15,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "658054251523-ug4vi2rl00bdeqr836e883o6pbebpjm3.apps.googleusercontent.com",
+          "client_id": "658054251523-11qkml3c12umj2ivu9e9gihgtl8sqf3f.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.twenty80partnership.bibliofy",
-            "certificate_hash": "5d491dad37dff6110fcecc410014180eeef4ad45"
+            "certificate_hash": "5ca53976df59641a72a079c4d5b3852b2f23b64e"
+          }
+        },
+        {
+          "client_id": "658054251523-8isk7r93613n4be1pffvmu7pqe0fuc7s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.twenty80partnership.bibliofy",
+            "certificate_hash": "c3753b3054238cc97b9f7c1671f51cb38880f9de"
           }
         },
         {
@@ -52,11 +60,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "658054251523-ume3jphihkupordp0233jceangbt815h.apps.googleusercontent.com",
+          "client_id": "658054251523-uf2o79v2gul2mab1q1ueo9kj1g3uduo0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.twenty80partnership.bibliofyadmin",
-            "certificate_hash": "5d491dad37dff6110fcecc410014180eeef4ad45"
+            "certificate_hash": "5ca53976df59641a72a079c4d5b3852b2f23b64e"
+          }
+        },
+        {
+          "client_id": "658054251523-uindrohm6ehmiklkneceqjjv07qbgu46.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.twenty80partnership.bibliofyadmin",
+            "certificate_hash": "c3753b3054238cc97b9f7c1671f51cb38880f9de"
           }
         },
         {

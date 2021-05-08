@@ -4,37 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".CourseActivity">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+
+    <LinearLayout
+        android:weightSum="10"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:minHeight="?attr/actionBarSize"
-        app:title=" " />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <ImageView
+        android:scaleType="fitXY"
+        android:layout_weight="5"
+        android:id="@+id/img"
+        android:adjustViewBounds="true"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/courses_page_item"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5">
 
     <TextView
+        android:fontFamily="@font/andika_font"
         android:id="@+id/select_course"
-        android:layout_marginTop="50dp"
-        android:textSize="20dp"
+        android:layout_marginTop="25dp"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/green"
-        android:text="SELECT YOUR COURSE"/>
+        android:text="SELECT YOUR COURSE"
+        tools:ignore="HardcodedText" />
     <LinearLayout
         android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:id="@+id/course_layout"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:orientation="vertical"
         android:layout_height="wrap_content"
         android:layout_below="@+id/select_course">
         <LinearLayout
-            android:gravity="start"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
@@ -63,6 +76,8 @@
         </LinearLayout>
     </LinearLayout>
     <TextView
+        android:fontFamily="@font/andika_font"
+        android:textAlignment="center"
         android:id="@+id/info"
         android:layout_below="@+id/course_layout"
         android:layout_centerHorizontal="true"
@@ -70,15 +85,23 @@
         android:padding="5dp"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:text="We will let you know for good opportunities and we will guide you for academics throuout the semester."/>
+        android:text="Please select your course to get personalized recommendations."
+        tools:ignore="HardcodedText" />
 
     <Button
+        android:fontFamily="@font/andika_font"
         android:id="@+id/select"
         android:text="select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/info"
-        android:background="@color/green"
+        android:background="@drawable/borderless_colored"
+        android:textColor="@color/darkBlue"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"/>
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
+        </RelativeLayout>
+    </LinearLayout>
 </RelativeLayout>

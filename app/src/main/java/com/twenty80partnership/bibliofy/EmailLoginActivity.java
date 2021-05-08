@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -105,10 +106,9 @@ public class EmailLoginActivity extends AppCompatActivity {
                         Date currentTime= Calendar.getInstance().getTime();
                         Long date=Long.parseLong(dateFormat.format(currentTime));
 
-                        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users")
-                                .child(mAuth.getCurrentUser().getUid()).child("lastLogin");
-
-                        userRef.setValue(date).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        DatabaseReference loginInfoRef = FirebaseDatabase.getInstance().getReference("LoginInfo").child(mAuth.getCurrentUser().getUid())
+                                .push().child("time");
+                        loginInfoRef.setValue(date).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()){
@@ -117,6 +117,8 @@ public class EmailLoginActivity extends AppCompatActivity {
                                     overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                                 }
                                 else{
+                                    finish();
+
                                     Toast.makeText(EmailLoginActivity.this,task.getException().getMessage(),Toast.LENGTH_LONG).show();
                                 }
                             }
@@ -126,6 +128,7 @@ public class EmailLoginActivity extends AppCompatActivity {
                     }
                     else {
                         pd.dismiss();
+                        Log.d("excepdetail",task.getException().toString()+" exception");
                         Toast.makeText(EmailLoginActivity.this,task.getException().getMessage(),Toast.LENGTH_LONG).show();
                     }
                 }

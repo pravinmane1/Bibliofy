@@ -1,30 +1,25 @@
 package com.twenty80partnership.bibliofy.holders;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.graphics.Paint;
-
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.media.Image;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.elyeproj.loaderviewlibrary.LoaderImageView;
-import com.elyeproj.loaderviewlibrary.LoaderTextView;
 import com.squareup.picasso.Picasso;
 import com.twenty80partnership.bibliofy.R;
 
 public class CartItemViewHolder extends RecyclerView.ViewHolder {
 
-    private View mView;
-    public LinearLayout wishlist, remove,wishlistRemoveLayout;
+    public LinearLayout wishlist, remove, wishlistRemoveLayout;
     public View splitline;
     public TextView quantity;
-    public ImageView plus,minus;
+    public ImageView plus, minus;
+    private View mView;
 
     public CartItemViewHolder(View itemView) {
         super(itemView);
@@ -39,42 +34,59 @@ public class CartItemViewHolder extends RecyclerView.ViewHolder {
     }
 
     @SuppressLint("SetTextI18n")
-    public void setDetails(String name, String author, String publication, String img,
+    public void setDetails(String name, String publication, String img,
                            Integer originalPrice, Integer discountedPrice, Integer discount,
-                           Context ctx, Integer quantity,String type) {
+                           Integer quantity, String type, Integer count) {
 
-        LoaderTextView itemName=mView.findViewById(R.id.item_name);
-        LoaderTextView itemAuthor=mView.findViewById(R.id.item_author);
-        LoaderTextView itemPublication=mView.findViewById(R.id.item_publication);
-        LoaderImageView itemImg=mView.findViewById(R.id.item_img);
-        LoaderTextView itemOriginalPrice=mView.findViewById(R.id.item_original_price);
-        LoaderTextView itemDiscountedPrice=mView.findViewById(R.id.item_discounted_price);
-        LoaderTextView itemDiscount=mView.findViewById(R.id.item_discount);
-        //LoaderTextView itemQuantity=mView.findViewById(R.id.item_quantity);
+        TextView itemName = mView.findViewById(R.id.item_name);
+        TextView itemPublication = mView.findViewById(R.id.item_publication);
+        LoaderImageView itemImg = mView.findViewById(R.id.item_img);
+        TextView itemOriginalPrice = mView.findViewById(R.id.item_original_price);
+        TextView itemDiscountedPrice = mView.findViewById(R.id.item_discounted_price);
+        TextView itemDiscount = mView.findViewById(R.id.item_discount);
+        TextView tvOutOfStock = mView.findViewById(R.id.tv_out_of_stock);
+
         itemOriginalPrice.setPaintFlags(itemOriginalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-        itemName.setText(name);
-        itemAuthor.setText(author);
-        itemPublication.setText(publication);
-        itemOriginalPrice.setText("₹ "+originalPrice.toString());
-        itemDiscountedPrice.setText("₹ "+discountedPrice.toString());
-        itemDiscount.setText(discount.toString()+"% off");
+        if (name != null && !name.isEmpty())
+            itemName.setText(name);
 
-        if(img==null|| img.equals("")){
-            itemImg.setImageDrawable(ContextCompat.getDrawable(ctx,R.drawable.sample_book));
-        }
-        else {
+        if (publication != null && !publication.isEmpty())
+            itemPublication.setText(publication);
+
+        if (originalPrice != null)
+            itemOriginalPrice.setText("₹ " + originalPrice.toString());
+
+        if (discountedPrice != null)
+            itemDiscountedPrice.setText("₹ " + discountedPrice.toString());
+
+        if (discount != null)
+            itemDiscount.setText(discount.toString() + "% off");
+
+        if (img != null && !img.isEmpty()) {
             Picasso.get().load(img).into(itemImg);
+        } else {
+            itemImg.setImageResource(R.drawable.sample_book);
         }
 
-        if (type.equals("stationary")){
-            mView.findViewById(R.id.quantity_layout).setVisibility(View.VISIBLE);
+        if (type != null && !type.isEmpty()) {
+            if (type.equals("stationary")) {
+                mView.findViewById(R.id.quantity_layout).setVisibility(View.VISIBLE);
+            } else {
+                mView.findViewById(R.id.quantity_layout).setVisibility(View.GONE);
+            }
         }
-        else {
-            mView.findViewById(R.id.quantity_layout).setVisibility(View.GONE);
 
+
+        if (count != null) {
+            if (count < quantity || count == 0) {
+                tvOutOfStock.setVisibility(View.VISIBLE);
+            } else {
+                tvOutOfStock.setVisibility(View.GONE);
+            }
+        } else {
+            tvOutOfStock.setVisibility(View.GONE);
         }
-
     }
 
 }

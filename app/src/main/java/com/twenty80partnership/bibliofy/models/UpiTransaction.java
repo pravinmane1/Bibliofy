@@ -1,27 +1,27 @@
 package com.twenty80partnership.bibliofy.models;
 
 public class UpiTransaction {
-    String uId,tsnId,targetUpi;
+    String oId,tsnId,targetUpi;
     Long timeAdded;
-    Boolean checked;
+    String upiStatus;
 
     public UpiTransaction() {
     }
 
-    public UpiTransaction(String uId, String tsnId, String targetUpi, Long timeAdded, Boolean checked) {
-        this.uId = uId;
+    public UpiTransaction(String oId, String tsnId, String targetUpi, Long timeAdded, String upiStatus) {
+        this.oId = oId;
         this.tsnId = tsnId;
         this.targetUpi = targetUpi;
         this.timeAdded = timeAdded;
-        this.checked = checked;
+        this.upiStatus = upiStatus;
     }
 
-    public String getuId() {
-        return uId;
+    public String getoId() {
+        return oId;
     }
 
-    public void setuId(String uId) {
-        this.uId = uId;
+    public void setoId(String oId) {
+        this.oId = oId;
     }
 
     public String getTsnId() {
@@ -48,11 +48,11 @@ public class UpiTransaction {
         this.timeAdded = timeAdded;
     }
 
-    public Boolean getChecked() {
-        return checked;
+    public String getUpiStatus() {
+        return upiStatus;
     }
 
-    public void setChecked(Boolean checked) {
-        this.checked = checked;
+    public void setUpiStatus(String upiStatus) {
+        this.upiStatus = upiStatus;
     }
 }

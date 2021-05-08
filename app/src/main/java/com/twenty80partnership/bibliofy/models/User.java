@@ -1,26 +1,32 @@
 package com.twenty80partnership.bibliofy.models;
 
 public class User {
-    private String name,email,photo,phone,college,courseCode,branchCode,yearCode,semCode,userCode,course,uId,searchName;
+    private String name,email,photo,phone,college,uId,searchName,gender;
     private Integer orders;
     private Long registerDate;
+    private Boolean phoneVerified;
+    private UserCourse userCourse;
 
-    public User(String name, String email,String photo, String college, String courseCode,
-                String branchCode, String yearCode,
-                String userCode, Integer orders,String course,Long registerDate,String uId,String searchName) {
+    public User(String name,
+                String email,
+                String photo,
+                String college,
+                Integer orders,
+                Long registerDate,
+                String uId,
+                String searchName,
+                String gender,
+                UserCourse userCourse) {
         this.name = name;
         this.email = email;
         this.college = college;
-        this.courseCode = courseCode;
-        this.branchCode = branchCode;
-        this.yearCode = yearCode;
         this.orders = orders;
         this.photo = photo;
-        this.userCode = userCode;
-        this.course = course;
         this.registerDate = registerDate;
         this.uId = uId;
         this.searchName = searchName;
+        this.gender = gender;
+        this.userCourse = userCourse;
     }
 
     public User(String name, String email,String photo,int orders,Long registerDate,String uId,String searchName){
@@ -31,6 +37,30 @@ public class User {
         this.registerDate = registerDate;
         this.uId = uId;
         this.searchName = searchName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public UserCourse getUserCourse() {
+        return userCourse;
+    }
+
+    public void setUserCourse(UserCourse userCourse) {
+        this.userCourse = userCourse;
+    }
+
+    public Boolean getPhoneVerified() {
+        return phoneVerified;
+    }
+
+    public void setPhoneVerified(Boolean phoneVerified) {
+        this.phoneVerified = phoneVerified;
     }
 
     public String getSearchName() {
@@ -60,30 +90,6 @@ public class User {
     public User() {
     }
 
-    public String getCourse() {
-        return course;
-    }
-
-    public void setCourse(String course) {
-        this.course = course;
-    }
-
-    public String getSemCode() {
-        return semCode;
-    }
-
-    public void setSemCode(String semCode) {
-        this.semCode = semCode;
-    }
-
-    public String getUserCode() {
-        return userCode;
-    }
-
-    public void setUserCode(String userCode) {
-        this.userCode = userCode;
-    }
-
     public String getPhoto() {
         return photo;
     }
@@ -108,18 +114,6 @@ public class User {
         return college;
     }
 
-    public String getCourseCode() {
-        return courseCode;
-    }
-
-    public String getBranchCode() {
-        return branchCode;
-    }
-
-    public String getYearCode() {
-        return yearCode;
-    }
-
     public Integer getOrders() {
         return orders;
     }
@@ -138,18 +132,6 @@ public class User {
 
     public void setCollege(String college) {
         this.college = college;
-    }
-
-    public void setCourseCode(String courseCode) {
-        this.courseCode = courseCode;
-    }
-
-    public void setBranchCode(String branchCode) {
-        this.branchCode = branchCode;
-    }
-
-    public void setYearCode(String yearCode) {
-        this.yearCode = yearCode;
     }
 
     public void setOrders(Integer orders) {

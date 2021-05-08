@@ -5,8 +5,17 @@ public class OrderRequest {
     Long userTimeAdded;
     String tsnId;
     String targetUpi;
+    String pin;
 
     public OrderRequest() {
+    }
+
+    public String getPin() {
+        return pin;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
     }
 
     public Long getUserTimeAdded() {

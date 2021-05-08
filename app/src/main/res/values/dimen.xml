@@ -5,4 +5,6 @@
     <dimen name="signup_margin_top">15dp</dimen>
     <dimen name="original_width">25dp</dimen>
     <dimen name="original_height">25dp</dimen>
+
+    <dimen name="normal_button_padding">10dp</dimen>
 </resources>

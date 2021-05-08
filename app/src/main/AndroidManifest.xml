@@ -6,15 +6,36 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/transparent"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/transparent"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".OrderHelpActivity"></activity>
+        <activity
+            android:name=".BookListActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HomeStationaryActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HomeCoursesActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OrderDataActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SplashScreenNextActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
         <service
             android:name=".services.MyFirebaseMessagingService"
-            android:enabled="true"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -24,28 +45,69 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".BookTypeActivity" />
-        <activity android:name=".StationaryItemsActivity" />
-        <activity android:name=".StationaryActivity" />
-        <activity android:name=".BookDetailsActivity" />
-        <activity android:name=".OrderDetailsActivity" />
-        <activity android:name=".PayActivity" />
-        <activity android:name=".SelectAddressActivity" />
-        <activity android:name=".AddAddressActivity" />
-        <activity android:name=".AddressesActivity" />
-        <activity android:name=".CourseActivity" />
-        <activity android:name=".ChangePasswordActivity" />
-        <activity android:name=".ChangeEmailActivity" />
-        <activity android:name=".PhoneNumberActivity" />
-        <activity android:name=".PasswordActivity" />
-        <activity android:name=".EmailSignUpActivity" />
-        <activity android:name=".EmailLoginActivity" />
-        <activity android:name=".ProfileEditActivity" />
-        <activity android:name=".ProfileActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".StationaryItemsActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".StationaryActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OrderDetailsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PayActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddAddressActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddressesActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CourseActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ChangeEmailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PhoneNumberActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible" />
+        <activity
+            android:name=".PasswordActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible" />
+        <activity
+            android:name=".EmailSignUpActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EmailLoginActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ProfileEditActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -54,11 +116,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DashboardActivity"
-            android:launchMode="singleTop"
+            android:name=".LoginActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ExamsActivity"
+            android:name=".CommonActivity"
+            android:label="@string/title_activity_common"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ReLoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
@@ -73,29 +140,14 @@
         <activity
             android:name=".PhoneVerificationActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible" />
         <activity
             android:name=".CartActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".BooksActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ProjectsActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".MyOrdersActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".WishlistActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".PaymentsActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
@@ -110,6 +162,10 @@
             android:name=".AboutActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".WishlistActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -17,11 +18,18 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:background="@color/white"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:theme="@style/ToolbarTheme"
             android:minHeight="?attr/actionBarSize"
             app:titleTextColor="@color/black"
             app:title="Wishlist" />
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/appbarlayout"
+        android:layout_width="match_parent"
+        android:id="@+id/recycler_view"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"/>
 
 </RelativeLayout>

@@ -6,22 +6,54 @@ public class Order  implements Serializable {
     String orderId;
     Address address;
     PriceDetails priceDetails;
-    String status;
+    String paymentStatus,orderStatus;
     Long timeAdded;
     Long userTimeAdded;
     String tOid;
     Boolean userViewed;
     Integer daysForDelivery;
+    StatusStack statusStack;
+    String deliveryPerson;
+    String deliveryPersonNumber;
 
+    public String getDeliveryPerson() {
+        return deliveryPerson;
+    }
 
-    public Order(String orderId, Address address, PriceDetails priceDetails, String status, Long timeAdded, String tOid, Boolean userViewed) {
-        this.orderId = orderId;
-        this.address = address;
-        this.priceDetails = priceDetails;
-        this.status = status;
-        this.timeAdded = timeAdded;
-        this.tOid = tOid;
-        this.userViewed = userViewed;
+    public void setDeliveryPerson(String deliveryPerson) {
+        this.deliveryPerson = deliveryPerson;
+    }
+
+    public String getDeliveryPersonNumber() {
+        return deliveryPersonNumber;
+    }
+
+    public void setDeliveryPersonNumber(String deliveryPersonNumber) {
+        this.deliveryPersonNumber = deliveryPersonNumber;
+    }
+
+    public StatusStack getStatusStack() {
+        return statusStack;
+    }
+
+    public void setStatusStack(StatusStack statusStack) {
+        this.statusStack = statusStack;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 
     public Integer getDaysForDelivery() {
@@ -67,13 +99,6 @@ public class Order  implements Serializable {
     public Order() {
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public Long getTimeAdded() {
         return timeAdded;

@@ -18,8 +18,6 @@ import java.util.ArrayList;
 public class CustomChooserAdapter extends BaseAdapter {
     private Context mContext;
     private ArrayList<EvalInstalledAppInfo> mData;
-    private LayoutInflater inflater;
-    private ViewHolder vh;
     private ListEvent mCallBack;
 
     public CustomChooserAdapter(Context mContext) {
@@ -50,15 +48,16 @@ public class CustomChooserAdapter extends BaseAdapter {
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
 
-        if(view == null){
+        ViewHolder vh;
+        if (view == null) {
             vh = new ViewHolder();
-            inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.custom_chooser_row,null);
+            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.custom_chooser_row, null);
 
             vh.appImg = view.findViewById(R.id.appIcon);
             vh.appName = view.findViewById(R.id.appName);
             view.setTag(vh);
-        }else{
+        } else {
             vh = (ViewHolder) view.getTag();
         }
 
@@ -73,7 +72,7 @@ public class CustomChooserAdapter extends BaseAdapter {
         return view;
     }
 
-    class ViewHolder{
+    static class ViewHolder {
         ImageView appImg;
         TextView appName;
     }

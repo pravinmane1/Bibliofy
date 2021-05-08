@@ -4,75 +4,96 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ChangeEmailActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title=" " />
 
     <TextView
+        android:fontFamily="@font/andika_font"
         android:id="@+id/change_email"
-        android:layout_marginTop="50dp"
-        android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/green"
-        android:text="CHANGE YOUR EMAIL"/>
+        android:layout_marginTop="50dp"
+        android:text="CHANGE YOUR EMAIL"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+
     <LinearLayout
         android:id="@+id/text_fields"
-        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/change_email"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp">
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email_layout"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content">
-        <EditText
-            android:inputType="textEmailAddress"
-            android:hint="Email"
-            android:id="@+id/new_email"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_layout"
             android:layout_width="300dp"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:visibility="gone"
-        android:id="@+id/password_layout"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content">
-        <EditText
-            android:inputType="textPassword"
-            android:hint="Password"
-            android:id="@+id/password"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:fontFamily="@font/andika_font"
+                android:id="@+id/new_email"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                tools:ignore="HardcodedText"
+                android:importantForAutofill="no" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password_layout"
             android:layout_width="300dp"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword"
+                tools:ignore="HardcodedText"
+                android:importantForAutofill="no" />
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
+
     <TextView
+        android:textAlignment="center"
+        android:fontFamily="@font/andika_font"
         android:id="@+id/info"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/text_fields"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:padding="5dp"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:text="For verification purpose we'll send an email to old email id."/>
+        android:text="For verification purpose we'll send an email to old email id."
+        tools:ignore="HardcodedText" />
 
     <Button
+        android:fontFamily="@font/andika_font"
+        style="?android:attr/borderlessButtonStyle"
         android:id="@+id/change"
-        android:text="change"
+        android:textColor="@color/blue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/info"
-        android:background="@color/green"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"/>
+        android:layout_marginTop="25dp"
+        android:background="@drawable/borderless_colored"
+        android:text="change"
+        tools:ignore="HardcodedText" />
 </RelativeLayout>

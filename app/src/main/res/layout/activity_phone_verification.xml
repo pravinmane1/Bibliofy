@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".PhoneVerificationActivity">
     <androidx.appcompat.widget.Toolbar
@@ -31,11 +32,11 @@
         app:pinAccentColor="@color/colorAccent"
         app:accentWidth="3dp"
         app:mask=""
-        app:digitBackground="@android:color/white"
         app:digitElevation="4dp"
         />
 
     <TextView
+        android:fontFamily="@font/andika_font"
         android:id="@+id/info"
         android:layout_width="300dp"
         android:layout_centerHorizontal="true"
@@ -43,25 +44,39 @@
         android:layout_marginTop="30dp"
         android:text="Enter the otp sent to number"
         android:layout_height="wrap_content" />
-<LinearLayout
-    android:gravity="center"
-    android:orientation="horizontal"
-    android:layout_marginTop="41dp"
-    android:layout_below="@+id/info"
-    android:layout_centerHorizontal="true"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+
     <Button
-        android:background="@color/green"
+        android:layout_below="@+id/info"
+        android:layout_centerHorizontal="true"
+        style="?attr/borderlessButtonStyle"
+        android:background="@drawable/borderless_colored"
+        android:fontFamily="@font/andika_font"
+        android:textColor="@color/blue"
         android:id="@+id/sign_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="Verify" />
 
+    <Button
+        android:layout_below="@+id/sign_in"
+        android:layout_centerHorizontal="true"
+        style="?attr/borderlessButtonStyle"
+        android:background="@drawable/borderless_colored"
+        android:fontFamily="@font/andika_font"
+        android:textColor="@color/blue"
+        android:layout_margin="10dp"
+        android:id="@+id/resend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="resend"
+        android:layout_marginStart="10dp"/>
+
     <LinearLayout
+        android:layout_toLeftOf="@+id/resend"
+        android:layout_alignBottom="@+id/resend"
         android:gravity="center"
-        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -73,21 +88,14 @@
             android:layout_height="30dp"
             />
         <TextView
+            android:fontFamily="@font/andika_font"
             android:id="@+id/timer"
             android:gravity="center"
             android:padding="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5:00"/>
-    </LinearLayout>
+            android:text="5:00"
+            tools:ignore="HardcodedText" />
 
-    <Button
-        android:layout_margin="10dp"
-        android:background="@color/green"
-        android:id="@+id/resend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="resend"
-        android:layout_marginStart="10dp"/>
-</LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

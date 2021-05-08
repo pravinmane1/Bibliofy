@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/appbarlayout">
+
+            <androidx.appcompat.widget.Toolbar
+                android:theme="@style/ToolbarTheme"
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:background="@color/white"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                android:minHeight="?attr/actionBarSize"
+                app:titleTextColor="@color/black" >
+
+                <TextView
+                    android:gravity="center_vertical"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    android:text="Search Bookambo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_below="@+id/appbarlayout"
+            android:layout_width="match_parent"
+            android:fillViewport="true"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_below="@+id/appbarlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <com.mancj.materialsearchbar.MaterialSearchBar
+                    app:mt_hint="eg. Book's Name,Stationary..."
+                    android:theme="@style/SearchViewFontStyle"
+                    android:layout_margin="5dp"
+                    app:mt_speechMode="false"
+                    app:mt_maxSuggestionsCount="5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/search_bar" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_below="@+id/search_bar"
+                    android:visibility="visible"
+                    android:id="@+id/recycler_view"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+            </RelativeLayout>
+        </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

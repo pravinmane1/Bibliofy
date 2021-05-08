@@ -1,12 +1,20 @@
 package com.twenty80partnership.bibliofy.models;
 
 public class CartItem {
-    private String itemName,itemPublication,itemAuthor,itemId,itemImg,itemLocation;
+    private String itemName,itemPublication,itemAuthor,itemId,itemImg,itemLocation,type;
     private Integer itemOriginalPrice,itemDiscountedPrice,itemDiscount,quantity;
     private Long timeAdded;
 
 
     public CartItem() {
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getItemLocation() {

@@ -2,11 +2,13 @@ package com.twenty80partnership.bibliofy;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,9 +26,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.twenty80partnership.bibliofy.models.Branch;
 import com.twenty80partnership.bibliofy.models.Course;
-import com.twenty80partnership.bibliofy.models.User;
+import com.twenty80partnership.bibliofy.models.UserCourse;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class CourseActivity extends AppCompatActivity {
     private Spinner courseSpinner, yearSpinner,branchSpinner;
@@ -37,25 +40,40 @@ public class CourseActivity extends AppCompatActivity {
     ArrayList<Course>courseList;
     FirebaseAuth mAuth;
     ProgressDialog pd;
-    DatabaseReference coursesRef,userRef;
-    String courseCode="",yearCode="",branchCode="",finalCode="";
+    DatabaseReference coursesRef, userCourseRef;
+    String courseCode="",yearCode="",branchCode="";
     String courseName="",branchName="";
     private Course selectedData;
     Button select;
+    FirebaseDatabase db;
+    String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
+
+        if (Build.VERSION.SDK_INT >= 21) {
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            }
+
+            getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.courseBlue)); // Navigation bar the soft bottom of some phones like nexus and some Samsung note series
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.courseBlue));
+        }
+
+
         //set toolbar as actionBar
-        setToolBar();
+       // setToolBar();
 
         setProgressBar();
 
         setViews();
 
         mAuth = FirebaseAuth.getInstance();
-
+        db = FirebaseDatabase.getInstance();
+        uid = mAuth.getUid();
 
 
         coursesRef = FirebaseDatabase.getInstance().getReference("Courses").child("SPPU");
@@ -93,17 +111,17 @@ public class CourseActivity extends AppCompatActivity {
                     //fetch all courses , add it to currentCourse which will at the end be added to courseList
                     // and added to courses which is attached to adapter
                     currentCourse = courseSnapshot.getValue(Course.class);
-                    courses.add(currentCourse.getName());
 
                     ArrayList<Branch> branchList = new ArrayList<>();
 
                     //if branches exists add it to branchlist and add to currentCourse
-                    if (courseSnapshot.child("branches").exists()){
+                    if (courseSnapshot.child("branch").exists()){
 
-                        for (DataSnapshot branchSnapshot:courseSnapshot.child("branches").getChildren()){
+                        for (DataSnapshot branchSnapshot:courseSnapshot.child("branch").getChildren()){
                             branchList.add(branchSnapshot.getValue(Branch.class));
                         }
 
+                        Collections.sort(branchList);
                         currentCourse.setBranchList(branchList);
                     }
 
@@ -111,6 +129,12 @@ public class CourseActivity extends AppCompatActivity {
 
                     courseList.add(currentCourse);
 
+                }
+
+                Collections.sort(courseList);
+
+                for (Course c:courseList){
+                    courses.add(c.getName());
                 }
                 //courses are applied
                 courseAdapter.notifyDataSetChanged();
@@ -158,15 +182,21 @@ public class CourseActivity extends AppCompatActivity {
                         found=true;
                         //selectedData can be further used to retain selected course
                         selectedData = currentCourse;
-                        courseCode = currentCourse.getCode();
+                        courseCode = currentCourse.getId();
                         courseName = currentCourse.getName();
 
-                        finalCode = courseCode+branchCode+yearCode;
 
                         //add number of years to the years array which is attached to the yearspinner
-                        for (Integer i=1;i<=currentCourse.getYears();i++){
-                            years.add(i.toString());
+                        if (currentCourse.getYear()!=null){
+                            yearSpinner.setVisibility(View.VISIBLE);
+                            for (int i = 1; i<=currentCourse.getYear(); i++){
+                                years.add(Integer.toString(i));
+                            }
                         }
+                        else {
+                            yearSpinner.setVisibility(View.GONE);
+                        }
+
 
                         yearAdapter.notifyDataSetChanged();
 
@@ -217,9 +247,6 @@ public class CourseActivity extends AppCompatActivity {
                         if (currentBranch.getName().equals(branchSelected)){
                             branchCode=currentBranch.getCode();
                             branchName = currentBranch.getName();
-
-                            finalCode=courseCode+branchCode+yearCode;
-
                         }
                     }
                 }
@@ -240,9 +267,7 @@ public class CourseActivity extends AppCompatActivity {
 
                 String yearSelected = yearSpinner.getSelectedItem().toString();
                 if (!yearSelected.equals("SELECT YEAR")){
-                    yearCode=yearSelected;
-                    finalCode=courseCode+branchCode+yearCode;
-
+                    yearCode="0"+yearSelected;
                 }
 
 
@@ -270,32 +295,36 @@ public class CourseActivity extends AppCompatActivity {
                     pd.dismiss();
                     Toast.makeText(CourseActivity.this,"Select Course",Toast.LENGTH_SHORT).show();
                 }
-                else if (yearSpinner.getSelectedItem().toString().equals("SELECT YEAR")){
+                else if (yearSpinner.getVisibility()==View.VISIBLE && yearSpinner.getSelectedItem().toString().equals("SELECT YEAR")){
                     pd.dismiss();
                     Toast.makeText(CourseActivity.this,"Select Year",Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    Log.d("CourseActivityDebug","inside else :   "+courseCode+" "+branchCode+" "+yearCode);
 
-                    userRef = FirebaseDatabase.getInstance().getReference("Users").child(mAuth.getCurrentUser().getUid());
+                    userCourseRef = db.getReference("Users").child(uid).child("userCourse");
 
-                    userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                            User user = dataSnapshot.getValue(User.class);
+                            UserCourse userCourse = new UserCourse();
 
-                            user.setCourseCode(courseCode);
-                            if (branchSpinner.getVisibility()==View.VISIBLE){
-                                user.setBranchCode(branchCode);
-                            }
-                            else {
-                                user.setBranchCode(null);
-                            }
+                            Log.d("CourseActivityDebug","inside db :   "+courseCode+" "+branchCode+" "+yearCode);
 
-                            user.setYearCode(yearCode);
-                            user.setCourse(branchName+" "+courseName);
+                            if(!courseCode.isEmpty())
+                                userCourse.setCourseCode(courseCode.trim());
 
-                            userRef.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            if(!courseName.isEmpty())
+                                userCourse.setCourseName(courseName.trim());
+
+                            if(!branchCode.isEmpty())
+                                userCourse.setBranchCode(branchCode.trim());
+
+                            if(!branchName.isEmpty())
+                                userCourse.setBranchName(branchName.trim());
+
+                            if(!yearCode.isEmpty())
+                                userCourse.setYearCode(yearCode.trim());
+
+                            userCourseRef.setValue(userCourse).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()){
@@ -308,10 +337,12 @@ public class CourseActivity extends AppCompatActivity {
 
                                                 Intent phoneNumberIntent = new Intent(CourseActivity.this,PhoneNumberActivity.class);
                                                 phoneNumberIntent.putExtra("loginFlow","yes");
-                                                startActivity(phoneNumberIntent);
+                                                startActivity(new Intent(CourseActivity.this,CommonActivity.class));
+                                                finish();
                                             }
 
                                         else {
+                                            setResult(RESULT_OK);
                                             finish();
                                         }
 
@@ -323,13 +354,7 @@ public class CourseActivity extends AppCompatActivity {
                                     }
                                 }
                             });
-                        }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                            Toast.makeText(getApplicationContext(),"userref: "+databaseError.toException().toString(),Toast.LENGTH_SHORT).show();
-                        }
-                    });
                 }
 
             }
@@ -350,16 +375,16 @@ public class CourseActivity extends AppCompatActivity {
         pd.show();
     }
 
-    private void setToolBar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        if(getIntent().getStringExtra("loginFlow").equals("no")){
-            setSupportActionBar(toolbar);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-
-
-    }
+//    private void setToolBar() {
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//
+//        if(getIntent().getStringExtra("loginFlow").equals("no")){
+//            setSupportActionBar(toolbar);
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        }
+//
+//
+//    }
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -374,7 +399,7 @@ public class CourseActivity extends AppCompatActivity {
 
             if (courseIntent.getStringExtra("loginFlow").equals("yes")){
 
-                startActivity(new Intent(CourseActivity.this,DashboardActivity.class));
+                startActivity(new Intent(CourseActivity.this,CommonActivity.class));
                 finish();
             }
         else {

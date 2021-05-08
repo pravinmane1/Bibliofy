@@ -2,10 +2,12 @@ package com.twenty80partnership.bibliofy.models;
 
 import java.util.ArrayList;
 
-public class Course {
-    String code,name;
-    Integer years;
+public class Course implements Comparable<Course>{
+    String name,id;
+    Float priority;
+    Integer year;
     ArrayList<Branch> branchList;
+
 
     public ArrayList<Branch> getBranchList() {
         return branchList;
@@ -15,12 +17,20 @@ public class Course {
         this.branchList = branchList;
     }
 
-    public String getCode() {
-        return code;
+    public Integer getYear() {
+        return year;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -31,20 +41,19 @@ public class Course {
         this.name = name;
     }
 
-    public Integer getYears() {
-        return years;
+    public Float getPriority() {
+        return priority;
     }
 
-    public void setYears(Integer years) {
-        this.years = years;
+    public void setPriority(Float priority) {
+        this.priority = priority;
     }
 
     public Course() {
     }
 
-    public Course(String code, String name, Integer years) {
-        this.code = code;
-        this.name = name;
-        this.years = years;
+    @Override
+    public int compareTo(Course o) {
+        return this.priority.compareTo(o.getPriority());
     }
 }

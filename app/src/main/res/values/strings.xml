@@ -1,5 +1,11 @@
 <resources>
-    <string name="app_name">Bibliofy</string>
+    <string name="app_name">Bookambo</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+    <string name="title_activity_common">CommonActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="terms"><u>By continuing I accept terms of Service.</u></string>
+
 </resources>

@@ -75,31 +75,33 @@ public class ListenOrder extends Service implements ValueEventListener {
 
 
     private void showNotification(String key, Order order) {
-      //  Log.d("listenOrder","sn is called for order id"+order.getOrderId());
-
-        Intent intent = new Intent(getBaseContext(), OrderDetailsActivity.class);
-        intent.putExtra("orderId",order.getOrderId());
-        intent.putExtra("order",order);
-        intent.putExtra("source","notification");
-        Log.d("listenOrder","intent is created");
-
-        PendingIntent contentIntent = PendingIntent.getActivity(getBaseContext(),P,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getBaseContext());
-
-        builder.setAutoCancel(true)
-                .setDefaults(Notification.DEFAULT_ALL)
-                .setTicker("Bibliofy")
-                .setContentInfo("Order Notification")
-                .setContentText("Your order id: "+order.getOrderId()+" is "+order.getStatus())
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentIntent(contentIntent);
-        Log.d("listenOrder","notification is built");
-
-        NotificationManager manager = (NotificationManager)getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        //unique id for each notification
-        int randomInt = new Random().nextInt(9999-1)+1;
-        manager.notify(randomInt,builder.build());
+        //todo
+//
+//      //  Log.d("listenOrder","sn is called for order id"+order.getOrderId());
+//
+//        Intent intent = new Intent(getBaseContext(), OrderDetailsActivity.class);
+//        intent.putExtra("orderId",order.getOrderId());
+//        intent.putExtra("order",order);
+//        intent.putExtra("source","notification");
+//        Log.d("listenOrder","intent is created");
+//
+//        PendingIntent contentIntent = PendingIntent.getActivity(getBaseContext(),P,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+//
+//        NotificationCompat.Builder builder = new NotificationCompat.Builder(getBaseContext());
+//
+//        builder.setAutoCancel(true)
+//                .setDefaults(Notification.DEFAULT_ALL)
+//                .setTicker("Bibliofy")
+//                .setContentInfo("Order Notification")
+//                .setContentText("Your order id: "+order.getOrderId()+" is "+order.getOrderStatus())
+//                .setSmallIcon(R.mipmap.ic_launcher)
+//                .setContentIntent(contentIntent);
+//        Log.d("listenOrder","notification is built");
+//
+//        NotificationManager manager = (NotificationManager)getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
+//        //unique id for each notification
+//        int randomInt = new Random().nextInt(9999-1)+1;
+//        manager.notify(randomInt,builder.build());
     }
 
     @Override
@@ -122,8 +124,8 @@ public class ListenOrder extends Service implements ValueEventListener {
                 Log.d("listenOrder", "order is null");
 
             }
-            if(order.getUserViewed()!=null && order.getStatus()!=null) {
-                if (!order.getUserViewed() && !order.getStatus().equals("placed")) {
+            if(order.getUserViewed()!=null && order.getOrderStatus()!=null) {
+                if (!order.getUserViewed() && !order.getOrderStatus().equals("placed")) {
                     showNotification(order.getOrderId(), order);
                 }
             }

@@ -3,8 +3,40 @@ package com.twenty80partnership.bibliofy.models;
 import java.io.Serializable;
 
 public class PriceDetails implements Serializable {
-    Integer amountDiscounted,count,amountOriginal;
-    String method;
+    Integer amountDiscounted,count,amountOriginal,deliveryCharges;
+    String method,targetUpi,tsnId,upiStatus;
+
+    public String getUpiStatus() {
+        return upiStatus;
+    }
+
+    public void setUpiStatus(String upiStatus) {
+        this.upiStatus = upiStatus;
+    }
+
+    public Integer getDeliveryCharges() {
+        return deliveryCharges;
+    }
+
+    public void setDeliveryCharges(Integer deliveryCharges) {
+        this.deliveryCharges = deliveryCharges;
+    }
+
+    public String getTargetUpi() {
+        return targetUpi;
+    }
+
+    public void setTargetUpi(String targetUpi) {
+        this.targetUpi = targetUpi;
+    }
+
+    public String getTsnId() {
+        return tsnId;
+    }
+
+    public void setTsnId(String tsnId) {
+        this.tsnId = tsnId;
+    }
 
     public PriceDetails(Integer amountDiscounted, Integer count, Integer amountOriginal, String method) {
         this.amountDiscounted = amountDiscounted;

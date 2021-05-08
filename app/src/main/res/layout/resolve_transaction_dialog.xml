@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:padding="2dp"
+        android:id="@+id/img"
+        android:background="@drawable/thickborder_bg"
+        app:srcCompat="@drawable/upload"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        />
+
+    <EditText
+        android:fontFamily="@font/newfont"
+        android:id="@+id/et_desc"
+        android:layout_margin="15dp"
+        android:textColor="@color/black"
+        android:hint=" Enter description here..."
+        android:layout_alignParentEnd="true"
+        android:layout_width="match_parent"
+        android:layout_height="170sp"
+        android:layout_toEndOf="@+id/img"/>
+
+    <TextView
+        android:fontFamily="@font/newfont"
+        android:gravity="center"
+        android:width="100dp"
+        android:layout_marginStart="30dp"
+        android:layout_below="@id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload Transaction Receipt"/>
+
+</RelativeLayout>

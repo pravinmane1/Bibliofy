@@ -3,8 +3,8 @@ package com.twenty80partnership.bibliofy.models;
 import java.io.Serializable;
 
 public class Address implements Serializable {
-    private String buildingNameNumber,areaRoad,city,state,name,type,number,altNumber;
-    private Integer pincode;
+    private String buildingNameNumber, areaRoad, city, state, name, type, number, altNumber;
+    private String pincode;
     private Long timeAdded;
     private String id;
 
@@ -91,11 +91,11 @@ public class Address implements Serializable {
         this.name = name;
     }
 
-    public Integer getPincode() {
+    public String getPincode() {
         return pincode;
     }
 
-    public void setPincode(Integer pincode) {
+    public void setPincode(String pincode) {
         this.pincode = pincode;
     }
 

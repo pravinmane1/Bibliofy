@@ -1,10 +1,12 @@
 package com.twenty80partnership.bibliofy.services;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -13,8 +15,11 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.twenty80partnership.bibliofy.DashboardActivity;
+import com.twenty80partnership.bibliofy.CartActivity;
+import com.twenty80partnership.bibliofy.CommonActivity;
 import com.twenty80partnership.bibliofy.R;
+
+import java.util.Map;
 
 
 /**
@@ -56,6 +61,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // messages. For more see: https://firebase.google.com/docs/cloud-messaging/concept-options
         // [END_EXCLUDE]
 
+        super.onMessageReceived(remoteMessage);
+
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         Log.d(TAG, "From: " + remoteMessage.getFrom());
@@ -63,6 +70,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
+            sendNotification(remoteMessage);
 
             if (/* Check if data needs to be processed by long running job */ true) {
                 // For long-running tasks (10 seconds or more) use WorkManager.
@@ -108,9 +116,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      */
     private void scheduleJob() {
         // [START dispatch_job]
-       // OneTimeWorkRequest work = new OneTimeWorkRequest.Builder(MyWorker.class)
-     //           .build();
-      //  WorkManager.getInstance().beginWith(work).enqueue();
+        // OneTimeWorkRequest work = new OneTimeWorkRequest.Builder(MyWorker.class)
+        //           .build();
+        //  WorkManager.getInstance().beginWith(work).enqueue();
         // [END dispatch_job]
     }
 
@@ -130,42 +138,91 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      * @param token The new token.
      */
     private void sendRegistrationToServer(String token) {
+        Log.d("registrationToken",String.valueOf(token));
         // TODO: Implement this method to send token to your app server.
     }
 
     /**
      * Create and show a simple notification containing the received FCM message.
      *
-     * @param messageBody FCM message body received.
+     * @param remoteMessage FCM message body received.
      */
-    private void sendNotification(String messageBody) {
-        Intent intent = new Intent(this, DashboardActivity.class);
+    private void sendNotification(RemoteMessage remoteMessage) {
+        Map<String, String> data = remoteMessage.getData();
+        String title = data.get("title");
+        String content = data.get("body");
+
+        Intent intent = new Intent(this, CartActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
-        String channelId = "123";
-        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder =
-                new NotificationCompat.Builder(this, channelId)
-                        .setSmallIcon(R.drawable.userdisplay)
-                        .setContentTitle("hello")
-                        .setContentText(messageBody)
-                        .setAutoCancel(true)
-                        .setSound(defaultSoundUri)
-                        .setContentIntent(pendingIntent);
 
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        String NOTIFICATION_CHANNEL_ID = "Bookambo";
 
-        // Since android Oreo notification channel is needed.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(channelId,
-                    "Channel human readable title",
-                    NotificationManager.IMPORTANCE_DEFAULT);
-            notificationManager.createNotificationChannel(channel);
+            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID,
+                    "Bookambo Notification",
+                    NotificationManager.IMPORTANCE_HIGH);
+
+            notificationChannel.setDescription("Bookambo Channel for FCM");
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.setVibrationPattern(new long[]{500});
+            notificationChannel.enableVibration(true);
+
+            notificationManager.createNotificationChannel(notificationChannel);
         }
 
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,NOTIFICATION_CHANNEL_ID);
+
+        notificationBuilder.setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.drawable.transparent)
+                .setTicker("Hearty365")
+                .setContentTitle(title)
+                .setContentText(content)
+                .setContentInfo("info")
+                .setContentIntent(pendingIntent);
+
+        notificationManager.notify(1,notificationBuilder.build());
+
     }
+
+//    private void sendNotification(RemoteMessage remoteMessage) {
+//
+//        Log.d(TAG, "we are up: " + remoteMessage.getData());
+//
+//
+//        Intent intent = new Intent(this, CartActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+//                PendingIntent.FLAG_ONE_SHOT);
+//
+//        String channelId = "123";
+//        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//        NotificationCompat.Builder notificationBuilder =
+//                new NotificationCompat.Builder(this, channelId)
+//                        .setSmallIcon(R.drawable.appicon_compressed)
+//                        .setContentTitle(remoteMessage.getNotification().getTitle())
+//                        .setContentText(remoteMessage.getNotification().getBody())
+//                        .setAutoCancel(true)
+//                        .setSound(defaultSoundUri)
+//                        .setContentIntent(pendingIntent);
+//
+//        NotificationManager notificationManager =
+//                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//
+//        // Since android Oreo notification channel is needed.
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            NotificationChannel channel = new NotificationChannel(channelId,
+//                    "Channel human readable title",
+//                    NotificationManager.IMPORTANCE_DEFAULT);
+//            notificationManager.createNotificationChannel(channel);
+//        }
+//
+//        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+//    }
 }

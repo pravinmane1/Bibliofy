@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/details"
+        android:layout_margin="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/user"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/profile_boy"
+                tools:ignore="ContentDescription" />
+            <TextView
+                android:id="@+id/name"
+                android:layout_marginStart="10dp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/andika_font"
+                android:text="Pravin Mane"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/user_settings"
+                android:layout_marginTop="17dp"
+                android:layout_marginStart="5dp"
+                 android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_toEndOf="@+id/name"
+                app:srcCompat="@drawable/setting_profile"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add number >"
+            android:fontFamily="@font/andika_font"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pravinmane11122@gmail.com"
+            android:fontFamily="@font/andika_font"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/course"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/img0"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/my_course"
+                tools:ignore="ContentDescription" />
+            <TextView
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                android:fontFamily="@font/andika_font"
+                android:layout_toEndOf="@+id/img0"
+                android:layout_toStartOf="@+id/arrow0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="My course"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/arrow0"
+                android:layout_alignParentEnd="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:srcCompat="@drawable/ic_action_forward_arrow"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/addresses"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/location"
+                tools:ignore="ContentDescription" />
+            <TextView
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                android:fontFamily="@font/andika_font"
+                android:layout_toEndOf="@+id/img"
+                android:layout_toStartOf="@+id/arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Addresses"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/arrow"
+                android:layout_alignParentEnd="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:srcCompat="@drawable/ic_action_forward_arrow"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/wishlist"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+
+                android:id="@+id/img2"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/heart"
+                tools:ignore="ContentDescription" />
+            <TextView
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                android:fontFamily="@font/andika_font"
+                android:layout_toEndOf="@+id/img2"
+                android:layout_toStartOf="@+id/arrow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Wishlist"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/arrow2"
+                android:layout_alignParentEnd="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:srcCompat="@drawable/ic_action_forward_arrow"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/help_and_support"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/img3"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/help"
+                tools:ignore="ContentDescription" />
+            <TextView
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                android:fontFamily="@font/andika_font"
+                android:layout_toEndOf="@+id/img3"
+                android:layout_toStartOf="@+id/arrow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Help and Support"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/arrow3"
+                android:layout_alignParentEnd="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:srcCompat="@drawable/ic_action_forward_arrow"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/refer_and_earn"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/img4"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/refer"
+                tools:ignore="ContentDescription" />
+            <TextView
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                android:fontFamily="@font/andika_font"
+                android:layout_toEndOf="@+id/img4"
+                android:layout_toStartOf="@+id/arrow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Refer and Earn"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/arrow4"
+                android:layout_alignParentEnd="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:srcCompat="@drawable/ic_action_forward_arrow"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/about_us"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/img5"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/about"
+                tools:ignore="ContentDescription" />
+            <TextView
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                android:fontFamily="@font/andika_font"
+                android:layout_toEndOf="@+id/img5"
+                android:layout_toStartOf="@+id/arrow5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="About Us"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/arrow5"
+                android:layout_alignParentEnd="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:srcCompat="@drawable/ic_action_forward_arrow"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/logout"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:layout_gravity="start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/img6"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/logout"
+                tools:ignore="ContentDescription" />
+            <TextView
+                android:textColor="@color/black"
+                android:fontFamily="@font/andika_font"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/img6"
+                android:layout_toStartOf="@+id/arrow6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Logout"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/arrow6"
+                android:layout_alignParentEnd="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:srcCompat="@drawable/ic_action_forward_arrow"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+    </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

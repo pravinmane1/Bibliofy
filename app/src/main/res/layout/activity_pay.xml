@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".PayActivity">
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbarlayout"
         android:layout_width="match_parent"
@@ -17,89 +19,418 @@
             android:layout_alignParentTop="true"
             android:background="@color/white"
             android:minHeight="?attr/actionBarSize"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="Payment"
-            app:titleTextColor="@color/black" />
+            android:theme="@style/ToolbarTheme"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="Payment"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText" />
+
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <RadioGroup
-        android:id="@+id/radio_group"
-        android:layout_marginTop="40dp"
-        android:layout_below="@+id/appbarlayout"
+    <androidx.cardview.widget.CardView
+        android:layout_below="@id/appbarlayout"
+        android:id="@+id/cv_address"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/lighestgray"
+        app:cardCornerRadius="15dp"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RadioButton
-            android:id="@+id/cod"
-            android:layout_margin="5dp"
+        <RelativeLayout
+            android:visibility="visible"
+            android:id="@+id/address_details"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/andika_font"
+                android:paddingStart="10dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="8dp"
+                android:text="ADDRESS DETAILS"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <View
+                android:layout_below="@id/tv_title"
+                android:id="@+id/SplitLine_h2"
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@color/lightwhite" />
+
+            <ImageView
+                android:id="@+id/edit"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_below="@id/SplitLine_h2"
+                android:layout_alignParentEnd="true"
+                android:padding="5dp"
+                app:srcCompat="@drawable/edit_icon"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_marginStart="10dp"
+                android:layout_below="@id/SplitLine_h2"
+                android:fontFamily="@font/andika_font"
+                android:id="@+id/type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:text="HOME"
+                android:textColor="@color/dgreen"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:layout_below="@id/type"
+                android:fontFamily="@font/andika_font"
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:padding="3dp"
+                android:text="User Name"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
+
+
+
+                <TextView
+                    android:maxWidth="300dp"
+                    android:layout_below="@id/name"
+                    android:fontFamily="@font/andika_font"
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:padding="3dp"
+                    android:text="wadia college boys hostel. pune 411001, pune maharashtra"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_below="@id/address"
+                android:fontFamily="@font/andika_font"
+                android:id="@+id/number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:padding="3dp"
+                android:text="7057065515"
+                tools:ignore="HardcodedText" />
+            <Button
+                android:fontFamily="@font/andika_font"
+                android:textColor="@color/blue"
+                style="?attr/borderlessButtonStyle"
+                android:id="@+id/use_another_address"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/number"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/borderless_colored"
+                android:text="Use another address"
+                tools:ignore="HardcodedText" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+    <LinearLayout
+        android:layout_below="@id/cv_address"
+        android:background="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="visible"
+        android:id="@+id/price_details"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/andika_font"
+            android:paddingStart="10dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="8dp"
+            android:text="PRICE DETAILS"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <View
+            android:id="@+id/SplitLine_h"
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:background="@color/lightwhite" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cash On delivery"/>
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp">
+
+                <TextView
+                    android:id="@+id/total_items"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:fontFamily="@font/andika_font"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Price (6 items)"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/amount_items"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:fontFamily="@font/andika_font"
+                    android:gravity="end"
+                    android:paddingStart="10sp"
+                    android:paddingEnd="10dp"
+                    android:text="1000"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp">
+
+
+                <LinearLayout
+                    android:paddingStart="10dp"
+                    android:layout_weight="5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/andika_font"
+                        android:paddingEnd="5dp"
+                        android:text="Delivery"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    <TextView
+                        android:id="@+id/pin_view"
+                        android:textColor="@color/blue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/andika_font"
+                        android:text="411001"
+                        tools:ignore="HardcodedText" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/amount_delivery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:fontFamily="@font/andika_font"
+                    android:gravity="end"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="40"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_day_for_delivery"
+                android:paddingStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/andika_font"
+                android:paddingEnd="5dp"
+                android:text="(Delivery in 1 Day)"
+                tools:ignore="HardcodedText,RtlSymmetry" />
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:fontFamily="@font/andika_font"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Total Amount"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/amount_total"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:fontFamily="@font/andika_font"
+                    android:gravity="end|center_vertical"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="1040"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/SplitLine_hr"
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:background="@color/lightwhite" />
+
+        <TextView
+            android:id="@+id/amount_savings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/andika_font"
+            android:paddingStart="10dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="8dp"
+            android:text="You will save 550 on this order"
+            android:textColor="@color/green"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/price_details"
+        android:layout_marginTop="30dp">
+
+        <RadioButton
+            android:id="@+id/cod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:fontFamily="@font/andika_font"
+            android:text="Cash On delivery"
+            tools:ignore="HardcodedText" />
 
         <RadioButton
             android:id="@+id/upi"
-            android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Google Pay / Paytm UPI / FreeCharge UPI"/>
+            android:layout_margin="5dp"
+            android:fontFamily="@font/andika_font"
+            android:text="Google Pay / Paytm UPI / FreeCharge UPI"
+            tools:ignore="HardcodedText" />
     </RadioGroup>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/bottom"
-        android:elevation="4dp"
-
         android:layout_width="match_parent"
+
         android:layout_height="50dp"
-        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
+        android:elevation="4dp"
         android:gravity="center"
-        >
+        android:orientation="horizontal">
+
         <View
             android:id="@+id/SplitLine"
             android:layout_width="match_parent"
-            android:layout_height= "1.5dp"
+            android:layout_height="1.5dp"
             android:background="@color/lime" />
+
         <LinearLayout
-            android:baselineAligned="false"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:baselineAligned="false"
             android:orientation="horizontal">
+
             <LinearLayout
-                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:gravity="center"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
                 <TextView
                     android:id="@+id/payable_amount"
-                    android:textSize="25sp"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:layout_marginStart="15sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Loading..."/>
+                    android:layout_marginStart="15sp"
+                    android:fontFamily="@font/andika_font"
+                    android:padding="5dp"
+                    android:text="Loading..."
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
             </LinearLayout>
+
             <LinearLayout
-                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:gravity="end"
+                android:layout_height="match_parent"
                 android:layout_marginEnd="20dp"
-                android:layout_height="match_parent">
+                android:layout_weight="1"
+                android:gravity="end">
+
                 <TextView
                     android:id="@+id/place_order"
-                    android:textSize="20dp"
-                    android:background="@color/neongreen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:background="@drawable/borderless_colored"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:textColor="@color/white"
                     android:text="Place Order"
-                    />
+                    android:textColor="@color/blue"
+                    android:textSize="20sp"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
+   <RelativeLayout
+
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_below="@+id/radio_group">
+
+       <ImageView
+           android:scaleType="fitEnd"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/order"/>
+   </RelativeLayout>
 </RelativeLayout>

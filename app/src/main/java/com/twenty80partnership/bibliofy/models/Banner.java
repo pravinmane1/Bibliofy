@@ -1,7 +1,7 @@
 package com.twenty80partnership.bibliofy.models;
 
-public class Banner implements Comparable<Banner>{
-    private String id,img,name;
+public class Banner implements Comparable<Banner> {
+    private String id, img, name;
     float priority;
 
     public float getPriority() {
@@ -48,9 +48,10 @@ public class Banner implements Comparable<Banner>{
         this.img = img;
     }
 
-    public Banner(){}
+    public Banner() {
+    }
 
-    public int compareTo(Banner b){
+    public int compareTo(Banner b) {
 
         Float p = priority;
         return p.compareTo(b.priority);

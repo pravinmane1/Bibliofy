@@ -1,22 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#db009cdf</color>
+    <color name="fire">#FDA50F</color>
+    <color name="Lightfire">#FFDB9E</color>
+    <color name="default_text">#808080</color>
+    <!--    <color name="melon">#FDA50F</color>-->
+
+    <color name="sender">#EFEFEF</color>
+    <color name="receiver">#DCDCFF</color>
+
     <color name="colorPrimaryDark">#e0004ead</color>
+    <color name="lightGreen">#E5FAF3</color>
+    <color name="lightGreen2">#D3FDF3</color>
+    <color name="lightRed2">#FFE3E2</color>
+
+    <color name="courseBlue">#90BDFF</color>
+    <color name="lightYellow">#FBFFCA</color>
+    <color name="lightblueA200">#93A1E3</color>
+    <color name="lightRed">#FAE5E5</color>
+    <color name="brown">#EC615B</color>
     <color name="colorAccent">#f3fb4f00</color>
     <color name="green">#29eb29</color>
     <color name="dgreen">#038c03</color>
     <color name="mgreen">#4c9b08</color>
+    <color name="darkBlue">#0519FA</color>
+    <color name="deepPurple">#311F83</color>
     <color name="header">#e1222222</color>
     <color name="dheader">#f4181818</color>
     <color name="white" >#ffffff</color>
+    <color name="lightgreen">#FFF1FFF1</color>
     <color name="mildwhite">#e7dfdf</color>
-    <color name="wallet">#086b85</color>
+    <color name="wallet">#FFFAFAFA</color>
+    <color name="lighestgray">#FFF7F7F7</color>
     <!--<color name="lightwhite">#e9e9f5</color>-->
     <color name="lightwhite">#eceff1</color>
-    <color name="yellow">#FFFF00</color>
+    <color name="yellow">#FBDF1B</color>
+    <color name="indigo">#5858FC</color>
+    <color name="blueA200">#5E76ED</color>
     <color name="fuchsia">#FF00FF</color>
     <color name="silver">#C0C0C0</color>
-    <color name="light_gray">#e1dfdf</color>
+    <color name="light_gray">#FFEDEDED</color>
+    <color name="border_gray">#FFEDEDED</color>
     <color name="dark_gray">#808080</color>
     <color name="olive">#808000</color>
     <color name="purple">#800080</color>
@@ -33,7 +57,7 @@
     <color name="light_green">#0fe81d</color>
     <color name="heart">#989C98</color>
     <color name="bg">#f5f5f5</color>
-
+    <color name="transparent">#00FFFFFF</color>
     <color name="placeholder_bg">#dddddd</color>
     <color name="item_name">#0c0c0c</color>
     <color name="description">#1a1a1a</color>

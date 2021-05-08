@@ -1,60 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".PhoneNumberActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:minHeight="?attr/actionBarSize"
         app:title=" " />
 
     <TextView
+        android:fontFamily="@font/andika_font"
         android:id="@+id/phone_verification"
         android:layout_marginTop="50dp"
-        android:textSize="20dp"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/green"
-        android:text="PHONE NUMBER VERIFICATION"/>
+        android:text="PHONE NUMBER VERIFICATION"
+        tools:ignore="HardcodedText" />
+
     <com.google.android.material.textfield.TextInputLayout
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone_verification"
         android:id="@+id/number_layout"
         android:layout_width="300dp"
-        android:layout_below="@+id/phone_verification"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:layout_height="wrap_content">
     <EditText
+        android:fontFamily="@font/andika_font"
         android:inputType="number"
-        android:hint="Phone Number"
+        android:hint="Phone Number (10 Digits) "
         android:id="@+id/number"
         android:layout_width="300dp"
-        android:layout_height="wrap_content" />
+        android:maxLength="10"
+        android:layout_height="wrap_content"
+        tools:ignore="HardcodedText"
+        android:importantForAutofill="no" />
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
+        android:fontFamily="@font/andika_font"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/number_layout"
         android:id="@+id/info"
-        android:layout_below="@+id/number_layout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:padding="5dp"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:text="We will send you otp on this number, please make sure that provided number is accessible"/>
+        android:text="We will send you otp on this number, please make sure that provided number is accessible"
+        tools:ignore="HardcodedText" />
 
     <Button
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info"
         android:id="@+id/send_otp"
         android:text="send otp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/info"
-        android:background="@color/green"
+        android:background="@drawable/borderless_colored"
+        style="?attr/borderlessButtonStyle"
+        android:textColor="@color/blue"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"/>
-</RelativeLayout>
+        android:layout_marginTop="25dp"
+        tools:ignore="HardcodedText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

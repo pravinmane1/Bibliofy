@@ -3,12 +3,17 @@ package com.twenty80partnership.bibliofy;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,26 +39,41 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class ProfileEditActivity extends AppCompatActivity {
 
-    ImageView cancel,save,photo;
-    EditText college,editName;
-    TextView email,changePassword,course,changeCourse,addresses;
+    ImageView imgMale,imgFemale,photo;
+    Button save;
+    EditText editName;
+    TextView email,phoneStatus;
+    RelativeLayout changePassword;
     FirebaseAuth mAuth;
     DatabaseReference userRef;
     String oldName="";
     ProgressDialog pd;
-    private TextView phoneStatus,userPhone;
+    private TextView userPhone;
     FirebaseUser firebaseUser;
     private ProgressDialog pdSave;
-    String sCollege,sCourse;
+    String sGender;
     private Handler h;
+    private RadioButton maleSelect,femaleSelect;
+    private RadioGroup rg1,rg2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_edit);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Profile");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mAuth = FirebaseAuth.getInstance();
         firebaseUser = mAuth.getCurrentUser();
@@ -61,19 +81,20 @@ public class ProfileEditActivity extends AppCompatActivity {
 
         oldName = mAuth.getCurrentUser().getDisplayName();
 
-        cancel = findViewById(R.id.cancel);
         save = findViewById(R.id.save);
-        phoneStatus = findViewById(R.id.phone_status);
         userPhone = findViewById(R.id.user_phone);
+        phoneStatus = findViewById(R.id.phone_status);
         editName = findViewById(R.id.edit_name);
         email = findViewById(R.id.user_email);
         photo = findViewById(R.id.edit_photo);
-        college = findViewById(R.id.edit_college);
-        course = findViewById(R.id.edit_course);
         TextView changeEmail = findViewById(R.id.change_email);
         changePassword = findViewById(R.id.change_password);
-        changeCourse = findViewById(R.id.change_course);
-        addresses = findViewById(R.id.addresses);
+        maleSelect = findViewById(R.id.male_select);
+        femaleSelect = findViewById(R.id.female_select);
+        rg1 = findViewById(R.id.rg1);
+        rg2 = findViewById(R.id.rg2);
+        imgFemale = findViewById(R.id.img_female);
+        imgMale = findViewById(R.id.img_male);
 
         pd = new ProgressDialog(ProfileEditActivity.this);
         pd.setMessage("Removing...");
@@ -88,7 +109,7 @@ public class ProfileEditActivity extends AppCompatActivity {
         builder.setMessage("Once phone number is removed , It can't be undone. You have to reverify to add the same or different number. ");
         builder.setCancelable(true);
 
-        builder.setPositiveButton("remove",
+        builder.setPositiveButton("Remove",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -120,20 +141,43 @@ public class ProfileEditActivity extends AppCompatActivity {
             }
         });
 
-        changeCourse.setOnClickListener(new View.OnClickListener() {
+        maleSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfileEditActivity.this,CourseActivity.class);
-                intent.putExtra("loginFlow","no");
-                startActivity(intent);
+                rg2.clearCheck();
+                femaleSelect.setChecked(false);
+                maleSelect.setChecked(true);
+                Picasso.get().load(R.drawable.profile_boy).into(photo);
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
+        femaleSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                rg1.clearCheck();
+                maleSelect.setChecked(false);
+                femaleSelect.setChecked(true);
+                Picasso.get().load(R.drawable.profile_girl).into(photo);
+            }
+        });
+
+        imgMale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rg2.clearCheck();
+                maleSelect.setChecked(true);
+                femaleSelect.setChecked(false);
+                Picasso.get().load(R.drawable.profile_boy).into(photo);
+            }
+        });
+
+        imgFemale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rg1.clearCheck();
+                maleSelect.setChecked(false);
+                femaleSelect.setChecked(true);
+                Picasso.get().load(R.drawable.profile_girl).into(photo);
             }
         });
 
@@ -145,11 +189,14 @@ public class ProfileEditActivity extends AppCompatActivity {
 
                 String nameS = editName.getText().toString();
 
-                if ( !nameS.equals(firebaseUser.getDisplayName()) ) {
+                //if ( !nameS.equals(firebaseUser.getDisplayName()) ) {
 
                     updateName(nameS);
-                }
-
+                //}
+                //else {
+                //    pdSave.dismiss();
+                 //   finish();
+                //}
 //                if (!course.getText().toString().equals("")){
 //
 //                        userRef.child("course").setValue(course.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -164,37 +211,17 @@ public class ProfileEditActivity extends AppCompatActivity {
 //                            }
 //                        });
 //                }
-
-
-                if (!college.getText().toString().equals("")){
-
-                        userRef.child("college").setValue(college.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-
-                                if (task.isSuccessful()){
-                                }
-                                else {
-                                    Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        });
-                    }
-
-                    pdSave.dismiss();
-                finish();
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
         phoneStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (phoneStatus.getText().toString().equals("remove")){
+                if (phoneStatus.getText().toString().equals("Remove")){
                     AlertDialog alert = builder.create();
                     alert.show();
                 }
-                else if (phoneStatus.getText().toString().equals("add")){
+                else if (phoneStatus.getText().toString().equals("Add")){
                     Intent phoneIntent = new Intent(ProfileEditActivity.this,PhoneNumberActivity.class);
                     phoneIntent.putExtra("loginFlow","no");
                     startActivityForResult(phoneIntent,3);
@@ -216,15 +243,7 @@ public class ProfileEditActivity extends AppCompatActivity {
             }
         });
 
-        addresses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ProfileEditActivity.this,AddressesActivity.class));
-            }
-        });
-
-
-        setUserData();  // photo name email college course address
+        setUserData();  // photo name email
     }
 
     @Override
@@ -250,8 +269,7 @@ public class ProfileEditActivity extends AppCompatActivity {
 
                 Log.d("userstatus", "firebase found");
 
-                //null point exception todo
-                if (!Objects.equals(profile.getDisplayName(), name)){
+
 
                     Log.d("userstatus", "oldname:" + profile.getDisplayName() + " changing to: " + name.trim());
 
@@ -271,6 +289,28 @@ public class ProfileEditActivity extends AppCompatActivity {
 
                                 editName.setText(name);
 
+                                userRef.child("name").setValue(name);
+                                userRef.child("searchName").setValue(name.toLowerCase());
+
+                                if(maleSelect.isChecked()){
+                                    userRef.child("gender").setValue("male").addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            pdSave.dismiss();
+                                            finish();
+                                        }
+                                    });
+                                }
+                                else{
+                                    userRef.child("gender").setValue("female").addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            pdSave.dismiss();
+                                            finish();
+                                        }
+                                    });
+                                }
+
                             //    Toast.makeText(ProfileEditActivity.this, name, Toast.LENGTH_LONG).show();
                                 Log.d("userstatus", "updated");
 
@@ -278,13 +318,12 @@ public class ProfileEditActivity extends AppCompatActivity {
                             } else {
                                 Toast.makeText(ProfileEditActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                 Log.d("userstatus", task.getException().getMessage());
+                                pdSave.dismiss();
+                                finish();
                             }
 
                         }
                     });
-                } else {
-                    Log.d("userstatus", "oldname:" + profile.getDisplayName() + "not changing to: " + name);
-                }
 
                 break;
             }
@@ -306,78 +345,49 @@ public class ProfileEditActivity extends AppCompatActivity {
 
     private void setUserData() {
 
-        Picasso.get()
-                .load(firebaseUser.getPhotoUrl())
-                .placeholder(R.drawable.userdisplay)
-                .into(photo);
 
         editName.setText(firebaseUser.getDisplayName());
         email.setText(firebaseUser.getEmail());
 
+        boolean passwordUser = false;
 
         for (UserInfo profile:firebaseUser.getProviderData()){
             if (profile.getProviderId().equals("password")){
                 changePassword.setVisibility(View.VISIBLE);
+                passwordUser = true;
                 break;
             }
         }
 
-        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        if (!passwordUser){
+            changePassword.setVisibility(View.GONE);
+        }
+
+        userRef.child("gender").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                 sCollege = dataSnapshot.child("college").getValue(String.class);
-                 sCourse = dataSnapshot.child("course").getValue(String.class);
-
-                if (sCollege != null){
-                    college.setText(sCollege);
-                    college.setEnabled(true);
-                }
-                else{
-                    college.setEnabled(true);
-                }
-
-                if (sCourse !=null){
-                    course.setText(sCourse);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-        DatabaseReference addressesRef = FirebaseDatabase.getInstance().getReference("Addresses").child(mAuth.getCurrentUser().getUid());
-
-        Query q = addressesRef.orderByChild("timeAdded");
-
-        q.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 if (dataSnapshot.exists()){
 
-                    Address model = new Address();
+                    sGender = dataSnapshot.getValue(String.class);
 
-                    for(DataSnapshot addressSnapshot:dataSnapshot.getChildren()){
-                        model = addressSnapshot.getValue(Address.class);
+
+                    if (sGender!=null && !sGender.equals("")){
+
+                        if(sGender.equals("male")){
+                            femaleSelect.setChecked(false);
+                            maleSelect.setChecked(true);
+                            Picasso.get().load(R.drawable.profile_boy).into(photo);
+                        }
+                        else {
+                            femaleSelect.setChecked(true);
+                            maleSelect.setChecked(false);
+                            Picasso.get().load(R.drawable.profile_girl).into(photo);
+                        }
                     }
-                    String completeAddress = model.getBuildingNameNumber() +" "+
-                            model.getAreaRoad()  +" "+
-                            model.getCity()  +" "+
-                            model.getState() + "-"+
-                            model.getPincode();
-
-                    addresses.setText(completeAddress);
-                    addresses.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_action_forward_arrow,0);
                 }
-                else {
-                    addresses.setText("Add Address");
-                    addresses.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_action_add,0);
+                else{
+                    Toast.makeText(ProfileEditActivity.this,"no gender set for user",Toast.LENGTH_LONG).show();
                 }
-
             }
 
             @Override
@@ -390,7 +400,7 @@ public class ProfileEditActivity extends AppCompatActivity {
     private void updatePhone() {
         Log.d("userdata","setPhoneProvider is called from requestcode 3");
 
-        Boolean isPhone=false;
+        boolean isPhone=false;
 
         for (UserInfo profile : firebaseUser.getProviderData()) {
             // Id of the provider (ex: google.com)
@@ -401,7 +411,7 @@ public class ProfileEditActivity extends AppCompatActivity {
                 isPhone=true;
                 String phone = profile.getPhoneNumber();
                 userPhone.setText(phone);
-                phoneStatus.setText("remove");
+                phoneStatus.setText("Remove");
                 phoneStatus.setTextColor(getResources().getColor(R.color.red));
                 break;
             }
@@ -421,8 +431,8 @@ public class ProfileEditActivity extends AppCompatActivity {
         if (!isPhone){
             userPhone.setText("Phone Number");
             pd.dismiss();
-            phoneStatus.setText("add");
-            phoneStatus.setTextColor(getResources().getColor(R.color.red));
+            phoneStatus.setText("Add");
+            phoneStatus.setTextColor(getResources().getColor(R.color.green));
         }
         // [END get_provider_data]
     }
@@ -460,6 +470,12 @@ public class ProfileEditActivity extends AppCompatActivity {
 //        // [END auth_google_cred]
 //        return credential;
 //    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
 
 

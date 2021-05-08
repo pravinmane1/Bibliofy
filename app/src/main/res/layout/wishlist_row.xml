@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/book_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingBottom="5dp">
+
+    <com.elyeproj.loaderviewlibrary.LoaderImageView
+        android:id="@+id/book_img"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/round_corner" />
+
+    <View
+        android:id="@+id/block"
+        android:layout_width="10dp"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@+id/book_img"
+        android:layout_alignBottom="@+id/book_img"
+        android:layout_toEndOf="@+id/book_img" />
+
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/book_img"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@+id/block"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/book_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/andika_font"
+            android:gravity="center_vertical"
+            android:text="BOOK NAME"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/book_availability"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:fontFamily="@font/andika_font"
+            android:gravity="center"
+            android:text="AVAILABILITY"
+            android:textColor="@color/green"
+            android:textSize="12sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/book_publication"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/block"
+        android:fontFamily="@font/andika_font"
+        android:gravity="left"
+        android:text="Publication"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:id="@+id/price_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/book_publication"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/block"
+        android:gravity="start"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/book_discounted_price"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:fontFamily="@font/andika_font"
+            android:gravity="center"
+            android:text="₹ 300"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+
+        <TextView
+            android:id="@+id/book_original_price"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:fontFamily="@font/andika_font"
+            android:gravity="center"
+            android:text="518"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+
+        android:id="@+id/bottom_end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/price_layout"
+        android:layout_toEndOf="@id/block">
+
+        <TextView
+            android:id="@+id/book_discount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:fontFamily="@font/andika_font"
+            android:gravity="center"
+            android:textColor="@color/light_green"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+        <!--        android:text="30% off"-->
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_out_of_stock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/andika_font"
+            android:gravity="center"
+            android:minWidth="70dp"
+            android:minHeight="30dp"
+            android:padding="4dp"
+            android:text="Out Of Stock"
+            android:textColor="@color/red"
+            android:textSize="14sp"/>
+        <Button
+            android:id="@+id/add"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/borderless_colored"
+            android:fontFamily="@font/andika_font"
+            android:gravity="center"
+            android:minWidth="70dp"
+            android:minHeight="30dp"
+            android:padding="4dp"
+            android:text="ADD"
+            android:textColor="@color/blue"
+            android:textSize="18sp" />
+
+        <Button
+
+            android:textAllCaps="false"
+            android:id="@+id/remove_item"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:layout_toStartOf="@+id/add"
+            android:fontFamily="@font/andika_font"
+            android:gravity="center"
+            android:minWidth="70dp"
+            android:minHeight="30dp"
+            android:padding="4dp"
+            android:text="Remove"
+            android:textColor="@color/red"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+
+    </RelativeLayout>
+
+
+    <View
+        android:id="@+id/SplitLine_hor"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_below="@+id/bottom_end"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="4dp"
+        android:layout_toEndOf="@+id/block"
+        android:background="@color/lightwhite" />
+</RelativeLayout>
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:id="@+id/book_card"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_margin="5dp"-->
+<!--    android:orientation="vertical"-->
+<!--    app:cardElevation="3dp">-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="160dp"-->
+<!--        android:layout_margin="4dp"-->
+<!--        android:orientation="vertical"-->
+<!--        android:weightSum="9">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="1.9"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:weightSum="10">-->
+
+<!--            <TextView-->
+<!--                android:fontFamily="@font/andika_font"-->
+<!--                android:id="@+id/book_name"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginStart="4dp"-->
+<!--                android:layout_weight="6"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:text="BOOK NAME"-->
+<!--                android:textColor="@color/header"-->
+<!--                android:textSize="12sp"-->
+<!--                tools:ignore="HardcodedText,NestedWeights" />-->
+
+<!--            <TextView-->
+<!--                android:fontFamily="@font/andika_font"-->
+<!--                android:id="@+id/book_availability"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="3"-->
+<!--                android:gravity="center"-->
+<!--                android:text="AVAILABILITY"-->
+<!--                android:textColor="@color/green"-->
+<!--                android:textSize="12sp"-->
+<!--                tools:ignore="HardcodedText" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/cancel"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                app:srcCompat="@drawable/cancel"-->
+<!--                tools:ignore="ContentDescription" />-->
+<!--        </LinearLayout>-->
+
+<!--        <View-->
+<!--            android:id="@+id/SplitLine_hor1"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1.5dp"-->
+<!--            android:layout_marginStart="4dp"-->
+<!--            android:layout_marginEnd="4dp"-->
+<!--            android:background="@color/lightwhite" />-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="7"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:weightSum="10"-->
+<!--            android:baselineAligned="false">-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_margin="4dp"-->
+<!--                android:layout_weight="3"-->
+<!--                tools:ignore="NestedWeights">-->
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerHorizontal="true"-->
+<!--                    android:layout_centerVertical="true">-->
+
+<!--                    <com.elyeproj.loaderviewlibrary.LoaderImageView-->
+<!--                        android:id="@+id/book_img"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:minWidth="60dp"-->
+<!--                        android:minHeight="75dp" />-->
+<!--                </androidx.cardview.widget.CardView>-->
+<!--            </RelativeLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="7"-->
+<!--                android:orientation="vertical"-->
+<!--                android:weightSum="16">-->
+
+<!--                <TextView-->
+<!--                    android:fontFamily="@font/andika_font"-->
+<!--                    android:id="@+id/book_publication"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="0dp"-->
+<!--                    android:layout_weight="3"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="Publication"-->
+<!--                    android:textSize="14sp"-->
+<!--                    tools:ignore="HardcodedText" />-->
+
+
+<!--                <TextView-->
+<!--                    android:fontFamily="@font/andika_font"-->
+<!--                    android:id="@+id/book_author"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="0dp"-->
+<!--                    android:layout_weight="3"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="Author : a.b.keshte"-->
+<!--                    android:textSize="14sp"-->
+<!--                    tools:ignore="HardcodedText" />-->
+
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="0dp"-->
+<!--                    android:layout_weight="4"-->
+<!--                    android:gravity="center"-->
+<!--                    android:orientation="horizontal">-->
+
+
+<!--                    <TextView-->
+<!--                        android:fontFamily="@font/andika_font"-->
+<!--                        android:id="@+id/book_discounted_price"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginStart="15dp"-->
+<!--                        android:layout_marginEnd="5dp"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="₹ 300"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="20sp"-->
+<!--                        tools:ignore="HardcodedText" />-->
+
+
+<!--                    <TextView-->
+<!--                        android:fontFamily="@font/andika_font"-->
+<!--                        android:id="@+id/book_original_price"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginLeft="5dp"-->
+<!--                        android:layout_marginRight="5dp"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="518"-->
+<!--                        tools:ignore="HardcodedText" />-->
+
+
+<!--                    <TextView-->
+<!--                        android:fontFamily="@font/andika_font"-->
+<!--                        android:id="@+id/book_discount"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginLeft="5dp"-->
+<!--                        android:layout_marginRight="5dp"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="30% off"-->
+<!--                        android:textColor="@color/green"-->
+<!--                        tools:ignore="HardcodedText" />-->
+<!--                </LinearLayout>-->
+
+<!--                <View-->
+<!--                    android:id="@+id/SplitLine_hor"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1.5dp"-->
+<!--                    android:layout_marginEnd="4dp"-->
+<!--                    android:background="@color/lightwhite" />-->
+
+<!--                <LinearLayout-->
+<!--                    android:baselineAligned="false"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="0dp"-->
+<!--                    android:layout_weight="6"-->
+<!--                    android:gravity="center"-->
+<!--                    android:weightSum="10">-->
+
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/remove_layout"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="5"-->
+<!--                        android:gravity="center"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:visibility="gone"-->
+<!--                        tools:ignore="NestedWeights">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/remove_item"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:gravity="center"-->
+<!--                            android:text="Remove Item"-->
+<!--                            android:textColor="@color/red"-->
+<!--                            android:visibility="visible"-->
+<!--                            tools:ignore="HardcodedText" />-->
+<!--                    </LinearLayout>-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="5"-->
+<!--                        android:gravity="center"-->
+<!--                        android:orientation="vertical">-->
+
+<!--                        <Button-->
+<!--                            android:textColor="@color/blue"-->
+<!--                            style="?attr/borderlessButtonStyle"-->
+<!--                            android:id="@+id/add"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:background="@drawable/borderless_colored"-->
+<!--                            android:fontFamily="@font/andika_font"-->
+<!--                            android:gravity="center"-->
+<!--                            android:minWidth="70dp"-->
+<!--                            android:minHeight="30dp"-->
+<!--                            android:padding="4dp"-->
+<!--                            android:text="ADD"-->
+<!--                            android:textSize="18sp"-->
+<!--                            tools:ignore="HardcodedText" />-->
+<!--                    </LinearLayout>-->
+<!--                </LinearLayout>-->
+
+
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+<!--    </LinearLayout>-->
+<!--</androidx.cardview.widget.CardView>-->

@@ -1,6 +1,6 @@
 package com.twenty80partnership.bibliofy.models;
 
-public class Item {
+public class Item implements Comparable<Item>{
 String name,pic,id,code;
 Long timeAdded;
 Float priority;
@@ -70,6 +70,12 @@ Float priority;
 
     public Item() {
     }
+
+public int compareTo(Item s){
+
+        Float f = priority;
+        return f.compareTo(s.priority);
+        }
 
 
 }

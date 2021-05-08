@@ -5,17 +5,17 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.twenty80partnership.bibliofy.R;
-
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.twenty80partnership.bibliofy.R;
 
 public class AddressViewHolder extends RecyclerView.ViewHolder {
 
-    private View mView;
-    public ImageView edit,remove;
+    public ImageView edit, remove;
     public RadioButton radioButton;
+    private final View mView;
 
-    public AddressViewHolder(View itemView){
+    public AddressViewHolder(View itemView) {
         super(itemView);
         mView = itemView;
         edit = mView.findViewById(R.id.edit);
@@ -23,7 +23,7 @@ public class AddressViewHolder extends RecyclerView.ViewHolder {
         radioButton = mView.findViewById(R.id.select);
     }
 
-    public void setDetails(String name,String number,String type,String address){
+    public void setDetails(String name, String number, String type, String address) {
 
 
         TextView mName = mView.findViewById(R.id.name);
@@ -31,10 +31,17 @@ public class AddressViewHolder extends RecyclerView.ViewHolder {
         TextView mType = mView.findViewById(R.id.type);
         TextView mAddress = mView.findViewById(R.id.address);
 
-        mName.setText(name);
-        mNumber.setText(number);
-        mType.setText(type);
-        mAddress.setText(address);
+        if (name != null && !name.isEmpty())
+            mName.setText(name);
+
+        if (number != null && !number.isEmpty())
+            mNumber.setText(number);
+
+        if (type != null && !type.isEmpty())
+            mType.setText(type);
+
+        if (address != null && !address.isEmpty())
+            mAddress.setText(address);
 
     }
 }

@@ -1,178 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:shimmer="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".AvlCategoryActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    app:layout_constraintBottom_toTopOf="@+id/bottom_layout"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="1.0"
-    app:layout_constraintHorizontal_bias="1.0"
-    android:id="@+id/coordinator">
+        android:id="@+id/coordinator"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/appbarlayout">
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbarlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:fontFamily="casual"
-            android:background="@color/white"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:minHeight="?attr/actionBarSize"
-            app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:titleTextColor="@color/black"
-            app:title="Books" />
+            app:elevation="0dp">
 
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:orientation="vertical">
-
-       <LinearLayout
-           android:weightSum="2"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal">
-           <Spinner
-               style="@style/Base.Widget.AppCompat.Spinner.Underlined"
-               android:backgroundTint="@color/green"
-               android:id="@+id/branch_spinner"
-              android:layout_weight="1"
-               android:layout_gravity="center"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"/>
-            <Spinner
-                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
-                android:backgroundTint="@color/green"
-                android:layout_gravity="center"
-                android:id="@+id/year_spinner"
-                android:layout_weight="1"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-       </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:background="@color/white"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="@style/ToolbarTheme"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Books"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="10"
-            android:orientation="horizontal">
-
-            <Spinner
-                android:id="@+id/sem_spinner"
-                android:layout_weight="3.5"
-                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/green" />
-            <Spinner
-                android:id="@+id/publication_spinner"
-                android:layout_weight="3.5"
-
-                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/green" />
-            <Button
-                android:layout_gravity="center"
-                android:id="@+id/search"
-                android:layout_weight="3"
-
-                android:layout_width="65dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_height="30dp"
-                android:background="@drawable/ripple"
-                android:text="search"
-                android:textSize="13dp" />
-        </LinearLayout>
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:visibility="gone"
-            android:id="@+id/shimmer_view_container"
+            android:id="@+id/parent_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
             android:orientation="vertical"
-            shimmer:duration="800">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <!-- Adding 3 rows of placeholders -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-                <include layout="@layout/placeholder" />
+                <RelativeLayout
+                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background"
+                    android:orientation="horizontal">
 
-                <include layout="@layout/placeholder" />
-
-                <include layout="@layout/placeholder" />
-
+                <Spinner
+                    android:id="@+id/branch_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/fire"
+                    tools:ignore="UnusedAttribute" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background"
+                    android:orientation="horizontal">
+                <Spinner
+                    android:id="@+id/year_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/fire"
+                    tools:ignore="UnusedAttribute" />
+                </RelativeLayout>
             </LinearLayout>
 
-        </com.facebook.shimmer.ShimmerFrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10">
 
-        <ImageView
-            android:visibility="gone"
-            android:id="@+id/initial"
-            android:layout_marginTop="50dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/search_icon"/>
+                <RelativeLayout
+                    android:layout_margin="5dp"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="3.5"
+                    android:background="@drawable/background"
+                    android:orientation="horizontal">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+                <Spinner
+                    android:id="@+id/sem_spinner"
+                    style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="3.5"
+                    android:backgroundTint="@color/fire"
+                    tools:ignore="UnusedAttribute" />
 
+                </RelativeLayout>
 
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="3.5"
+                    android:background="@drawable/background"
+                    android:orientation="horizontal">
+                <Spinner
+                    android:id="@+id/publication_spinner"
+                    style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                    android:layout_margin="5dp"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="3.5"
+                    android:backgroundTint="@color/fire"
+                    tools:ignore="UnusedAttribute" />
+                </RelativeLayout>
+                <Button
+                    android:fontFamily="@font/andika_font"
+                    android:id="@+id/search"
+                    android:layout_width="65dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="3"
+                    android:background="@drawable/ripple"
+                    android:text="search"
+                    android:textSize="13sp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
 
-    </LinearLayout>
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_view_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone"
+                shimmer:duration="800">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+                <!-- Adding 3 rows of placeholders -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-    <LinearLayout
-       android:visibility="gone"
+                    <include layout="@layout/placeholder" />
+
+                    <include layout="@layout/placeholder" />
+
+                    <include layout="@layout/placeholder" />
+
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <ImageView
+                android:id="@+id/initial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/search_icon"
+                android:visibility="gone"
+                tools:ignore="ContentDescription" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/no_items"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:visibility="gone"
+                app:lottie_autoPlay="false"
+                app:lottie_loop="false" />
+
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <RelativeLayout
         android:id="@+id/bottom_layout"
         android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="0dp"
+        android:layout_height="60dp"
         android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
         android:orientation="horizontal"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:background="@color/neongreen"
-        android:gravity="center"
-        >
+        app:layout_constraintRight_toRightOf="parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/light_gray"/>
 
         <TextView
+            android:textSize="20dp"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/andika_font"
+            android:textStyle="bold"
             android:id="@+id/show_cart_count"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="2 items in Cart"
-            />
-    </LinearLayout>
+            android:textColor="@color/blue"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_marginTop="-8dp"
+            android:layout_marginBottom="-10dp"
+            android:layout_alignTop="@+id/show_cart_count"
+            android:layout_alignBottom="@+id/show_cart_count"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toEndOf="@+id/show_cart_count"
+            android:layout_marginStart="10dp"
+            app:srcCompat="@drawable/ic_action_forward_arrow"/>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

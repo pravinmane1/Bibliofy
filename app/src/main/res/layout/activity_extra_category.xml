@@ -92,7 +92,7 @@
        android:layout_below="@+id/info"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp"
-        android:background="@drawable/button_rect_green"
+        android:background="@drawable/borderless_white"
         android:text="    Request    "
         android:layout_marginBottom="15dp"/>
 </RelativeLayout>

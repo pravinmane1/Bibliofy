@@ -1,219 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:elevation="12dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
-    >
-    <LinearLayout
-        android:layout_width="match_parent"
+    android:background="@color/white">
+
+    <View
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_width="20dp"
+        android:layout_height="5dp"
+        android:id="@+id/gap"/>
+
+    <TextView
+        android:layout_toStartOf="@+id/item_img"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/gap"
+        android:id="@+id/item_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <LinearLayout
+        android:fontFamily="@font/andika_font"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+        <TextView
+            android:layout_toStartOf="@+id/item_img"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/gap"
+            android:layout_below="@+id/item_name"
+            android:id="@+id/item_publication"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp">
+            android:fontFamily="@font/andika_font" />
 
-            <com.elyeproj.loaderviewlibrary.LoaderTextView
-                android:id="@+id/item_name"
+        <LinearLayout
+            android:layout_toStartOf="@+id/item_img"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/gap"
+            android:id="@+id/price_layout"
+            android:layout_below="@id/item_publication"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/item_discounted_price"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:fontFamily="@font/andika_font"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/item_original_price"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:fontFamily="@font/andika_font"
+                android:gravity="center" />
+
+
+            <TextView
+                android:id="@+id/item_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:fontFamily="@font/andika_font"
+                android:gravity="center"
+                android:textColor="@color/green" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_toStartOf="@+id/item_img"
+            android:layout_toEndOf="@+id/gap"
+            android:layout_below="@+id/price_layout"
+            android:id="@+id/quantity_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|start"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
-        </LinearLayout>
-        <LinearLayout
-            android:weightSum="10"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                android:fontFamily="@font/andika_font"
+                android:gravity="center"
+                android:text="Qty : " />
 
-                <LinearLayout
-                    android:layout_weight="6"
-                    android:id="@+id/data"
-                       android:paddingStart="10dp"
-                       android:paddingEnd="10dp"
-                       android:paddingTop="10dp"
-                       android:paddingBottom="10dp"
-                       android:layout_width="0dp"
-                       android:layout_height="wrap_content"
-                       android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-        <com.elyeproj.loaderviewlibrary.LoaderTextView
-               android:id="@+id/item_publication"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginBottom="10dp" />
+                <ImageView
+                    android:id="@+id/minus"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_margin="5dp"
+                    android:clickable="true"
+                    android:src="@drawable/minus"
+                    android:visibility="visible" />
 
-                    <com.elyeproj.loaderviewlibrary.LoaderTextView
-                        android:id="@+id/item_author"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        />
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:gravity="start"
-               android:orientation="horizontal">
-
-               <com.elyeproj.loaderviewlibrary.LoaderTextView
-                   android:id="@+id/item_discounted_price"
-                   android:layout_marginRight="5dp"
-                   android:gravity="center"
-                   android:layout_width="wrap_content"
-                   android:layout_height="match_parent"
-                   android:textColor="@color/black"
-                   android:textSize="20dp"
-                   />
-
-
-               <com.elyeproj.loaderviewlibrary.LoaderTextView
-                   android:id="@+id/item_original_price"
-                   android:layout_width="wrap_content"
-                   android:gravity="center"
-                   android:layout_marginRight="5dp"
-                   android:layout_marginLeft="5dp"
-                   android:layout_height="match_parent"
-                    />
-
-
-
-               <com.elyeproj.loaderviewlibrary.LoaderTextView
-                   android:id="@+id/item_discount"
-                   android:gravity="center"
-                   android:layout_marginRight="5dp"
-                   android:layout_marginLeft="5dp"
-                   android:layout_width="wrap_content"
-                   android:layout_height="match_parent"
-                   android:textColor="@color/green"
-                   />
-
-           </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/quantity_layout"
-                        android:visibility="gone"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:gravity="center"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="Qty : "/>
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center"
-                            >
-                            <ImageView
-                                android:visibility="visible"
-                                android:id="@+id/minus"
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_margin="5dp"
-                                android:clickable="true"
-                                android:src="@drawable/minus"/>
-                            <TextView
-                                android:visibility="visible"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/item_quantity"
-                                android:textSize="17dp"
-                                android:text="1"/>
-
-                            <ImageView
-                                android:id="@+id/plus"
-                                android:clickable="true"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:layout_margin="5dp"
-                                android:src="@drawable/plus"
-                                android:visibility="visible" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-       </LinearLayout>
-
-                <LinearLayout
-                    android:layout_weight="4"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:gravity="right">
-                <com.elyeproj.loaderviewlibrary.LoaderImageView
-                   android:id="@+id/item_img"
-                   android:paddingBottom="10dp"
-                   android:layout_marginEnd="30dp"
-                   android:scaleType="fitXY"
-                   android:adjustViewBounds="true"
-                    android:minHeight="75dp"
-                    android:minWidth="60dp"
+                <TextView
+                    android:id="@+id/item_quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                   />
-                </LinearLayout>
-       </LinearLayout>
-        <View
-            android:id="@+id/splitline"
-            android:layout_width="match_parent"
-            android:layout_height= "1.5dp"
-            android:background="@color/lightwhite" />
+                    android:fontFamily="@font/andika_font"
+                    android:text="1"
+                    android:textSize="17dp"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/plus"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_margin="5dp"
+                    android:clickable="true"
+                    android:src="@drawable/plus"
+                    android:visibility="visible" />
+            </LinearLayout>
+        </LinearLayout>
+
+    <TextView
+        android:visibility="gone"
+        android:text="Out Of Stock"
+        android:textColor="@color/red"
+        android:layout_toStartOf="@+id/item_img"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/gap"
+        android:layout_below="@+id/quantity_layout"
+        android:id="@+id/tv_out_of_stock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/andika_font" />
+
         <LinearLayout
+            android:layout_toEndOf="@+id/gap"
+            android:layout_toStartOf="@+id/item_img"
+            android:layout_below="@+id/tv_out_of_stock"
             android:id="@+id/wishlist_remove_layout"
-            android:weightSum="4"
             android:layout_width="match_parent"
-            android:gravity="center"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:baselineAligned="false"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
             <LinearLayout
                 android:id="@+id/add_to_wishlist"
-                android:layout_weight="2"
                 android:layout_width="0dp"
-                android:padding="4dp"
-                android:gravity="center"
-                android:layout_height="wrap_content">
-            <TextView
-                android:drawableLeft="@drawable/wishlist"
-                android:drawablePadding="4dp"
-
-                android:layout_margin="5dp"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Add to Wishlist"/>
-            </LinearLayout>
-            <View
-                android:id="@+id/SplitLine_hor"
-                android:layout_width="1.5dp"
-                android:layout_height= "match_parent"
-                android:background="@color/lightwhite" />
-            <LinearLayout
-                android:padding="4dp"
-                android:id="@+id/remove"
                 android:layout_weight="2"
-                android:layout_width="0dp"
                 android:gravity="center"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:drawableLeft="@drawable/remove"
-                    android:drawablePadding="4dp"
-                    android:layout_gravity="center"
+                android:padding="4dp">
 
-                    android:layout_margin="5dp"
+                <TextView
+                    android:textSize="12sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:drawableLeft="@drawable/wishlist"
+                    android:drawablePadding="4dp"
+                    android:fontFamily="@font/andika_font"
                     android:gravity="center"
-                    android:text="Remove"/>
+                    android:text="Add to Wishlist" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/remove"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:padding="4dp">
+
+                <TextView
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:drawableLeft="@drawable/remove"
+                    android:drawablePadding="4dp"
+                    android:fontFamily="@font/andika_font"
+                    android:gravity="center"
+                    android:text="Remove" />
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+
+
+    <com.elyeproj.loaderviewlibrary.LoaderImageView
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:id="@+id/item_img"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
+        android:paddingBottom="10dp" />
+
+    <View
+        android:layout_alignParentBottom="true"
+        android:id="@+id/SplitLine_h"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/lightwhite" />
+</RelativeLayout>

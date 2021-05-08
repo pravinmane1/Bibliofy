@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 public class Book implements Serializable {
     private String name,author,publication,img,id;
-    private Integer originalPrice,discountedPrice,discount;
-    private Boolean availability;
+    private Integer originalPrice,discountedPrice,discount,count;
+    private Boolean availability,visibility;
 
     public Book() {
     }
 
     public Book(String id,String name, String author, String publication,String img,
-                Integer originalPrice, Integer discountedPrice, Integer discount, Boolean availability) {
+                Integer originalPrice, Integer discountedPrice, Integer discount, Boolean availability,Boolean visibility) {
         this.id=id;
         this.name = name;
         this.author = author;
@@ -21,6 +21,23 @@ public class Book implements Serializable {
         this.discountedPrice = discountedPrice;
         this.discount = discount;
         this.availability = availability;
+        this.visibility = visibility;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public Boolean getVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(Boolean visibility) {
+        this.visibility = visibility;
     }
 
     public void setName(String name) {

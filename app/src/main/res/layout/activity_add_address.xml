@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddAddressActivity">
+    tools:context=".AddAddressActivity"
+    tools:ignore="HardcodedText">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbarlayout"
@@ -18,274 +19,297 @@
             android:layout_alignParentTop="true"
             android:background="@color/white"
             android:minHeight="?attr/actionBarSize"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="Add new address"
-            app:titleTextColor="@color/black" />
+            android:theme="@style/ToolbarTheme"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
+
     <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@+id/appbarlayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-<RelativeLayout
-    android:layout_below="@+id/appbarlayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <androidx.cardview.widget.CardView
-        android:id="@+id/address_details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:background="@color/white">
 
-        <LinearLayout
-            android:layout_margin="10dp"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputLayout
-                app:hintTextAppearance="@style/MyAppearance"
-                android:id="@+id/pincode_layout"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/address_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="15dp">
+                android:layout_marginTop="10dp">
 
-                <EditText
-                    android:maxLength="6"
-                    android:theme="@style/MyAppearance"
-                    android:id="@+id/pincode"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="Pincode*"
-                    android:inputType="number"
-                    android:textSize="15dp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                app:hintTextAppearance="@style/MyAppearance"
-                android:id="@+id/house_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="15dp">
-
-                <EditText
-                    android:theme="@style/MyAppearance"
-                    android:id="@+id/building_name_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="Building Name/Number*"
-                    android:inputType="none"
-                    android:textSize="15dp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                app:hintTextAppearance="@style/MyAppearance"
-                android:id="@+id/area_road_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="15dp">
-
-                <EditText
-                    android:theme="@style/MyAppearance"
-                    android:id="@+id/area_road"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="Area,Road*"
-                    android:inputType="none"
-                    android:textSize="15dp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    app:hintTextAppearance="@style/MyAppearance"
-                    android:id="@+id/city_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="15dp">
-
-                    <EditText
-                        android:theme="@style/MyAppearance"
-                        android:id="@+id/city"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/pincode_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:hint="City*"
-                        android:inputType="none"
-                        android:textSize="15dp" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="15dp">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    app:hintTextAppearance="@style/MyAppearance"
-                    android:id="@+id/state_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="15dp">
+                        <EditText
+                            android:id="@+id/pincode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autofillHints="no"
+                            android:ems="10"
+                            android:fontFamily="@font/andika_font"
+                            android:hint="Pincode*"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:singleLine="true"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <EditText
-                        android:theme="@style/MyAppearance"
-                        android:id="@+id/state"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/house_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:hint="State*"
-                        android:inputType="none"
-                        android:textSize="15dp" />
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="15dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/contact_card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/address_details"
-        android:layout_marginTop="10dp">
+                        <EditText
+                            android:id="@+id/building_name_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:fontFamily="@font/andika_font"
+                            android:hint="Building Name/Number*"
+                            android:importantForAutofill="no"
+                            android:inputType="none"
+                            android:singleLine="true"
+                            android:textSize="15sp"
+                            tools:ignore="TextFields" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:layout_margin="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/area_road_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="15dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                app:hintTextAppearance="@style/MyAppearance"
-                android:id="@+id/name_layout"
+                        <EditText
+                            android:id="@+id/area_road"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:fontFamily="@font/andika_font"
+                            android:hint="Area,Road*"
+                            android:importantForAutofill="no"
+                            android:inputType="none"
+                            android:singleLine="true"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/city_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="15dp">
+
+                            <EditText
+                                android:id="@+id/city"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:fontFamily="@font/andika_font"
+                                android:hint="City*"
+                                android:importantForAutofill="no"
+                                android:inputType="none"
+                                android:singleLine="true"
+                                android:textSize="15sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/state_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="15dp">
+
+                            <EditText
+                                android:id="@+id/state"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:fontFamily="@font/andika_font"
+                                android:hint="State*"
+                                android:importantForAutofill="no"
+                                android:inputType="none"
+                                android:singleLine="true"
+                                android:textSize="15sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/contact_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="15dp">
+                android:layout_below="@+id/address_details"
+                android:layout_marginTop="10dp">
 
-                <EditText
-                    android:theme="@style/MyAppearance"
-                    android:id="@+id/name"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="Name*"
-                    android:inputType="none"
-                    android:textSize="15dp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                app:hintTextAppearance="@style/MyAppearance"
-                android:id="@+id/number_layout"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/name_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="15dp">
+
+                        <EditText
+                            android:id="@+id/name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:fontFamily="@font/andika_font"
+                            android:hint="Name*"
+                            android:importantForAutofill="no"
+                            android:inputType="none"
+                            android:singleLine="true"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/number_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="15dp">
+
+                        <EditText
+                            android:id="@+id/number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:fontFamily="@font/andika_font"
+                            android:hint="mobile number*"
+                            android:importantForAutofill="no"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:singleLine="true"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/alt_number_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="15dp">
+
+                        <EditText
+                            android:id="@+id/alt_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:fontFamily="@font/andika_font"
+                            android:hint="Alternate Mobile number (Optional)"
+                            android:importantForAutofill="no"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:singleLine="true"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/type_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="15dp">
+                android:layout_below="@+id/contact_card"
+                android:layout_marginTop="10dp">
 
-                <EditText
-                    android:maxLength="10"
-                    android:theme="@style/MyAppearance"
-                    android:id="@+id/number"
-                    android:layout_width="match_parent"
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="mobile number*"
-                    android:inputType="number"
-                    android:textSize="15dp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginStart="20dp"
+                    android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                app:hintTextAppearance="@style/MyAppearance"
-                android:id="@+id/alt_number_layout"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:fontFamily="@font/andika_font"
+                        android:text="Address Type" />
+
+                    <RadioGroup
+                        android:id="@+id/type_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp">
+
+                        <RadioButton
+                            android:id="@+id/home"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/andika_font"
+                            android:shadowColor="@color/green"
+                            android:text="HOME" />
+
+                        <RadioButton
+                            android:id="@+id/work"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/andika_font"
+                            android:text="WORK" />
+
+                        <RadioButton
+                            android:id="@+id/others"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/andika_font"
+                            android:text="OTHERS" />
+                    </RadioGroup>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/update"
+                style="?attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="15dp">
-
-                <EditText
-                    android:maxLength="10"
-                    android:theme="@style/MyAppearance"
-                    android:id="@+id/alt_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="Alternate Mobile number (Optional)"
-                    android:inputType="number"
-                    android:textSize="15dp" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/type_card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/contact_card"
-        android:layout_marginTop="10dp">
-
-
-        <LinearLayout
-            android:layout_marginStart="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_margin="5dp"
-                android:text="Address Type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <RadioGroup
-                android:id="@+id/type_group"
-                android:layout_margin="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:shadowColor="@color/green"
-                    android:id="@+id/home"
-                    android:text="HOME"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <RadioButton
-                    android:text="WORK"
-                    android:id="@+id/work"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <RadioButton
-                    android:id="@+id/others"
-                    android:text="OTHERS"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </RadioGroup>
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <Button
-        android:id="@+id/update"
-        android:background="@color/green"
-        android:layout_margin="15dp"
-        android:layout_below="@+id/type_card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="UPDATE"/>
-</RelativeLayout>
+                android:layout_below="@+id/type_card"
+                android:layout_margin="15dp"
+                android:background="@drawable/borderless_colored"
+                android:fontFamily="@font/andika_font"
+                android:text="UPDATE"
+                android:textColor="@color/blue" />
+        </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

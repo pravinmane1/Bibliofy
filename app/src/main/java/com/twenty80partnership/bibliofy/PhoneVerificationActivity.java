@@ -1,15 +1,21 @@
 package com.twenty80partnership.bibliofy;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import me.philio.pinentry.PinEntryView;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -19,7 +25,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -35,14 +45,22 @@ public class PhoneVerificationActivity extends AppCompatActivity {
     ProgressBar simple_p_b;
     String number;
     ProgressDialog pd;
+    Boolean autoVerified = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_verification);
 
-        setToolBar();
+        firebaseAuth=  FirebaseAuth.getInstance();
 
+        Log.d("verificationLog","reaching");
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+
+        setToolBar();
 
         Intent phoneIntent = getIntent();
 
@@ -59,28 +77,22 @@ public class PhoneVerificationActivity extends AppCompatActivity {
         setProgressDialog();
         setViews();
 
-        firebaseAuth=  FirebaseAuth.getInstance();
-
-
+        enterOtp.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(enterOtp, InputMethodManager.SHOW_IMPLICIT);
 
         resend.setEnabled(false);
         timer.setVisibility(View.GONE);
         simple_p_b.setVisibility(View.GONE);
 
-        resend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                resend.setEnabled(false);
-                sendVerificationCode(number);
-            }
+        resend.setOnClickListener(v -> {
+            resend.setEnabled(false);
+            sendVerificationCode(number);
         });
 
-        verify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (enterOtp.getText().toString().length()!=0)
-                verifyCode(enterOtp.getText().toString());
-            }
+        verify.setOnClickListener(v -> {
+            if (enterOtp.getText().toString().length()!=0)
+            verifyCode(enterOtp.getText().toString());
         });
 
 
@@ -115,28 +127,50 @@ public class PhoneVerificationActivity extends AppCompatActivity {
 
             PhoneAuthCredential credential=PhoneAuthProvider.getCredential(verificationId,code);
 
-            firebaseAuth.getCurrentUser().updatePhoneNumber(credential).addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()){
-                        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                        DatabaseReference userDataRef = FirebaseDatabase.getInstance().getReference("Users").child(mAuth.getCurrentUser().getUid()).child("isPhoneVerified");
-                        userDataRef.setValue(true);
-                        pd.dismiss();
-                        Toast.makeText(PhoneVerificationActivity.this,"number added successfully after verification",Toast.LENGTH_LONG).show();
-                        Intent rIntent = new Intent();
-                        setResult(RESULT_OK, rIntent);
-                        finish();
-                    }
-                    else {
-                        pd.dismiss();
-                        //Intent rIntent = new Intent();
-                        //setResult(RESULT_CANCELED, rIntent);
-                        //finish();
-                        Toast.makeText(PhoneVerificationActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                    }
-
+            firebaseAuth.getCurrentUser().updatePhoneNumber(credential).addOnCompleteListener(this, task -> {
+                if (task.isSuccessful()){
+                    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                    DatabaseReference userDataRef = FirebaseDatabase.getInstance().getReference("Users").child(mAuth.getCurrentUser().getUid()).child("isPhoneVerified");
+                    userDataRef.setValue(true);
+                    pd.dismiss();
+                    Toast.makeText(PhoneVerificationActivity.this,"number added successfully after verification",Toast.LENGTH_LONG).show();
+                    Intent rIntent = new Intent();
+                    setResult(RESULT_OK, rIntent);
+                    finish();
                 }
+                else {
+
+
+                    try {
+                        throw task.getException();
+                    } catch (FirebaseAuthUserCollisionException e) {
+
+                        AlertDialog.Builder alert = new AlertDialog.Builder(PhoneVerificationActivity.this);
+                        alert.setTitle("Number Exists");
+                        alert.setMessage("This number already exists with different user account. Please use a different number");
+                        alert.setCancelable(false);
+                        alert.setPositiveButton("Okay", (dialog, which) -> {
+                            dialog.dismiss();
+                            finish();
+                        });
+                        AlertDialog dialog = alert.create();
+                        dialog.show();
+
+                    } catch (Exception e) {
+                        AlertDialog.Builder alert = new AlertDialog.Builder(PhoneVerificationActivity.this);
+                        alert.setTitle("Error Occured");
+                        alert.setMessage(e.getMessage());
+                        alert.setCancelable(false);
+                        alert.setPositiveButton("Okay", (dialog, which) -> {
+                            dialog.dismiss();
+                            finish();
+                        });
+                        AlertDialog dialog = alert.create();
+                        dialog.show();
+                    }
+                    pd.dismiss();
+                }
+
             });
         }
         else{
@@ -149,14 +183,16 @@ public class PhoneVerificationActivity extends AppCompatActivity {
 
     private void  sendVerificationCode(String s) {
 
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                s,
-                60,
-                TimeUnit.SECONDS,
-                this,
-                    mCallbacks
+        PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder(firebaseAuth)
+                        .setPhoneNumber(s)       // Phone number to verify
+                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                        .setActivity(this)                 // Activity (for callback binding)
+                        .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
+                        .build();
 
-        );
+        PhoneAuthProvider.verifyPhoneNumber(options);
+
     }
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -191,7 +227,8 @@ public class PhoneVerificationActivity extends AppCompatActivity {
             String code = phoneAuthCredential.getSmsCode();
          //   Toast.makeText(PhoneVerificationActivity.this,"onverification completed "+code,Toast.LENGTH_LONG).show();
 
-            if (code!=null) {
+            if (code!=null && !autoVerified) {
+                autoVerified = true;
                 enterOtp.setText(code);
                 timer.setVisibility(View.GONE);
                 simple_p_b.setVisibility(View.GONE);
@@ -203,7 +240,22 @@ public class PhoneVerificationActivity extends AppCompatActivity {
         public void onVerificationFailed(FirebaseException e) {
             timer.setVisibility(View.GONE);
             simple_p_b.setVisibility(View.GONE);
-            Toast.makeText(PhoneVerificationActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
+
+            try {
+                throw e;
+            } catch (FirebaseException firebaseException) {
+
+                AlertDialog.Builder alert = new AlertDialog.Builder(PhoneVerificationActivity.this);
+                alert.setTitle("Error occured");
+                alert.setMessage(firebaseException.getMessage());
+                alert.setCancelable(false);
+                alert.setPositiveButton("Okay", (dialog, which) -> {
+                    dialog.dismiss();
+                    finish();
+                });
+                AlertDialog dialog = alert.create();
+                dialog.show();
+            }
         }
     };
 
